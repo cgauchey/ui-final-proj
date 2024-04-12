@@ -18,8 +18,8 @@ def posture(item_id):
         return render_template('learn/posture/forward_head.html', id=item_id)
 
 
-@app.route('/anatomy/')
-def anatomy():
+@app.route('/anatomy/<int:item_id>')
+def anatomy(item_id):
     return render_template('learn/anatomy/anatomy_carousel.html')
 
 
@@ -30,7 +30,15 @@ def stretches(item_id):
 
 @app.route('/quiz/<int:item_id>')
 def quiz(item_id):
-    return render_template('quiz/mc.html', id=item_id)
+    if item_id == 2:
+        return render_template('quiz/drag_drop.html', id=item_id)
+    else:
+        return render_template('quiz/mc.html', id=item_id)
+
+
+@app.route('/quiz/results/<int:item_id>')
+def results(item_id):
+    return render_template('quiz/results.html', id=item_id)
 
 
 if __name__ == '__main__':

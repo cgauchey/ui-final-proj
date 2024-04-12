@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif; /* Ensures the font is pleasant and readable */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* A light grey background */
+}
+
+/* Navbar customizations */
+.navbar-custom {
+  background-color: #0056b3; /* A nice shade of blue */
+  border-bottom: 2px solid #004080; /* Slightly darker blue for depth */
+}
+
+.navbar-brand, .nav-link {
+  color: #ffffff; /* White text for contrast */
+}
+
+.nav-link {
+  margin-right: 10px; /* Space between links */
+}
+
+.nav-link:hover {
+  background-color: #004080; /* Darker blue on hover for interactive feel */
+  border-radius: 5px; /* Slightly rounded corners on hover */
+}
+
+/* Mobile navbar toggle button */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5); /* Light white border for the button */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  /* Custom icon color */
+}
+
+/* Adjustments for small screens */
+@media (max-width: 992px) {
+  .navbar-collapse {
+      background-color: #0056b3; /* Ensures the menu background matches */
+  }
+
+  .nav-link {
+      padding: 10px 20px; /* Larger tap/click targets for mobile */
+      text-align: center; /* Center-align text for a better visual on small screens */
+      border-bottom: 1px solid #004080; /* Separates items visually */
+  }
+
+  .nav-item:last-child .nav-link {
+      border-bottom: none; /* Removes border from the last item */
+  }
+}

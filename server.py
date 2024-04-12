@@ -10,14 +10,27 @@ def homepage():
     return render_template('homepage.html')
 
 
-@app.route('/learn/<int:item_id>')
-def learn(item_id):
-    return render_template('learn.html')
+@app.route('/posture/<int:item_id>')
+def posture(item_id):
+    if item_id == 2:
+        return render_template('learn/posture/lower_crossed.html', id=item_id)
+    else:
+        return render_template('learn/posture/forward_head.html', id=item_id)
+
+
+@app.route('/anatomy/')
+def anatomy():
+    return render_template('learn/anatomy/anatomy_carousel.html')
+
+
+@app.route('/stretches/<int:item_id>')
+def stretches(item_id):
+    return render_template('learn/stretches/stretch.html', id=item_id)
 
 
 @app.route('/quiz/<int:item_id>')
 def quiz(item_id):
-    return render_template('quiz.html')
+    return render_template('quiz/mc.html', id=item_id)
 
 
 if __name__ == '__main__':

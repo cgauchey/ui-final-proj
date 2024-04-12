@@ -1,4 +1,4 @@
-# ui-final-proj
+# Posture Assessment (UI Design Final Project)
 
 ## To run the app locally:
 

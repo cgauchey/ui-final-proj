@@ -5,7 +5,10 @@ import random
 app = Flask(__name__)
 
 # current_id = 1
+answers = []
 
+
+#ROUTES
 
 @app.route('/')
 def homepage():
@@ -50,6 +53,16 @@ def quiz(item_id):
 @app.route('/quiz/results/<int:item_id>')
 def results(item_id):
     return render_template('quiz/results.html', id=item_id)
+
+
+
+#AJAX FUNCTIONS
+@app.route('/save_answer', methods=['POST'])
+def save_answer():
+    global answers 
+    answer = request.get_json()
+    answers.append(answer)
+    return answer
 
 
 if __name__ == '__main__':

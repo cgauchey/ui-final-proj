@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from questions_data import questions
 
 app = Flask(__name__)
 
@@ -30,10 +31,15 @@ def stretches(item_id):
 
 @app.route('/quiz/<int:item_id>')
 def quiz(item_id):
-    if item_id == 2:
-        return render_template('quiz/drag_drop.html', id=item_id)
-    else:
-        return render_template('quiz/mc.html', id=item_id)
+    quiz_data = questions.get(item_id) 
+    
+    if not quiz_data: 
+        return "<h1>Quiz not found</h1>"
+    elif quiz_data["type"] == "dragdrop": 
+        return render_template('quiz/drag_drop.html', quiz=quiz_data)
+    elif quiz_data["type"] == "mcq": 
+        return render_template('quiz/mc.html', quiz=quiz_data)
+    
 
 
 @app.route('/quiz/results/<int:item_id>')

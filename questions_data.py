@@ -32,10 +32,13 @@ questions = {
 
     5: {"id": 5, 
         "type": "dragdrop",
-        "drag": [""],
-        "drop": [""],
-        "answer": [""]
-
+        "question": "Drag each description to its corresponding term",
+        "answers": {
+            "Muscles": "Supports and stabilizes the skeletal system", 
+            "Spine": "Comprised of vertebrae and discs",
+            "Joints": "Allow movement and contribute to posture", 
+            "Connective Tissue": "Ligaments and tendons connect bones and muscles"
+        }
     }
    
 }

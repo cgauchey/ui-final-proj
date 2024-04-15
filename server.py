@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from questions_data import questions
+import random
 
 app = Flask(__name__)
 
@@ -36,7 +37,11 @@ def quiz(item_id):
     if not quiz_data: 
         return "<h1>Quiz not found</h1>"
     elif quiz_data["type"] == "dragdrop": 
-        return render_template('quiz/drag_drop.html', quiz=quiz_data)
+        drags = list(quiz_data['answers'].values())
+        random.shuffle(drags)
+        drops = list(quiz_data['answers'].keys())
+        random.shuffle(drops)
+        return render_template('quiz/drag_drop.html', quiz=quiz_data, drags = drags, drops=drops)
     elif quiz_data["type"] == "mcq": 
         return render_template('quiz/mc.html', quiz=quiz_data)
     

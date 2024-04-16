@@ -23,8 +23,11 @@
                 data: JSON.stringify(answer),
                 success: function (response) {
                     console.log('Results saved successfully');
-                    window.location.href = '/quiz/results/1'; // Redirect if needed
-                },
+                    if ("{{quiz.next}}" === "end"){
+                        window.location.href='/quiz/results/1';
+                    } else {
+                        window.location.href='/quiz/{{quiz.next}}';
+                    }                },
                 error: function () {
                     console.log('Error saving results');
                 }

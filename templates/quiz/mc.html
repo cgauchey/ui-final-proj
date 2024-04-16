@@ -21,7 +21,12 @@
                 data: JSON.stringify(answer),
                 success: function (response) {
                     console.log('Results saved successfully');
-                    window.location.href = '/quiz/{{ quiz.id + 1 }}';
+
+                    if ("{{quiz.next}}" === "end"){
+                        window.location.href='/quiz/results/1';
+                    } else {
+                        window.location.href='/quiz/{{quiz.next}}';
+                    }
                 },
                 error: function () {
                     console.log('Error saving results');
@@ -31,7 +36,7 @@
 
         $(document).ready(function () {
             $(".nextbutton").click(function () {
-                let answer = $('input[name="option"]:checked').val(); // Get the value of the checked radio button
+                let answer = $('input[name="option"]:checked').val(); 
                 save_answer(answer)
             });
         });

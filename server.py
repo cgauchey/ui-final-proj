@@ -44,20 +44,20 @@ def quiz(item_id):
     if not quiz_data:
         return "<h1>Quiz not found</h1>"
 
-    #drag and drop
+    # drag and drop
     elif quiz_data["type"] == "dragdrop":
 
-        #shuffle the options 
+        # shuffle the options
         drags = list(quiz_data["answer"].values())
         random.shuffle(drags)
         drops = list(quiz_data["answer"].keys())
         random.shuffle(drops)
-        
+
         return render_template(
             "quiz/drag_drop.html", quiz=quiz_data, drags=drags, drops=drops
         )
 
-    #mcq
+    # mcq
     elif quiz_data["type"] == "mcq":
         return render_template("quiz/mc.html", quiz=quiz_data)
 

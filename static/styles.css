@@ -87,3 +87,8 @@ body {
       border-bottom: none; /* Removes border from the last item */
   }
 }
+
+.forward-head
+{
+  width: 50px;
+}

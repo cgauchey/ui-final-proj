@@ -114,8 +114,7 @@ back_stretchlist = {
 
 }
 
-@app.route('/')
-=======
+
 # ROUTES
 @app.route("/")
 def homepage():

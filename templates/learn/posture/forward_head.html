@@ -15,7 +15,19 @@
 <body>
     {% include 'navbar.html' %}
     <div>
-        <h1>Forward Head</h1>
+        <h1>{{ pos.title }}</h1>
+        <ul>
+            {% for inner_list in pos.text %}
+                <li>
+                    <ul>
+                        {% for item in inner_list %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <img src="{{ pos.image }}" alt="Posture Image">
         <a href="/posture/2" class="nextbutton">Next</a>
 
     </div>

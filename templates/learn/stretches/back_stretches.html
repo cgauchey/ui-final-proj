@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lower Crossed</title>
+    <title>Forward Head</title>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -15,22 +15,15 @@
 <body>
     {% include 'navbar.html' %}
     <div>
-        <h1>{{ pos.title }}</h1>
-        <ul>
-            {% for inner_list in pos.text %}
-                <li>
-                    <ul>
-                        {% for item in inner_list %}
-                            <li>{{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <img src="{{ pos.image }}" alt="Posture Image">
-        <a href="/anatomy/1" class="nextbutton">Next</a>
-
+        {% for key, stretch in back_stretchlist.items() %}
+            <h2>{{ stretch['part'] }}</h2>
+                <img src=" {{ stretch.image }}">
+                {% for stretch_name in stretch['stretch_names'] %}
+                    <p>{{ stretch_name }}</p>
+                {% endfor %}
+        {% endfor %}
     </div>
-
+    <a href="/quiz/1" class="nextbutton">Next</a>
+    
 </body>
 </html>

@@ -15,8 +15,17 @@
 <body>
     {% include 'navbar.html' %}
     <div>
-      <h1>Strech #1</h1>
-      <a href="/quiz/1" class="nextbutton">Next</a>
+      <h1>We need to {{ stretch.action }} the {{ stretch.target }} muscles.</h1>
+      <h2>{{ stretch.title }}</h2>
+      <img src="{{ stretch.media }}" alt="Stretch Image">
+      <div>
+          <ul>
+              {% for step in stretch.text %}
+              <li>{{ step }}</li>
+              {% endfor %}
+          </ul>
+      </div>
+      <a href="{{ next_url }}" class="nextbutton">Next</a>
 
     </div>
 

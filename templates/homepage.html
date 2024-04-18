@@ -15,8 +15,31 @@
 <body>
     {% include 'navbar.html' %}
     <div>
-      <h1>Posture Assessment</h1>
-      <a href="/posture/1" class="startbutton">Start</a>
+      <!-- <h1>Posture Assessment</h1> -->
+      <div>
+        <h1>Posture</h1>
+        <div class="homeDescription">Learn how to identify and address common posture problems</div>
+      </div>
+      <div class="container">
+        <a href="/posture/1" class="box">
+          <p>Problems</p>
+          <img src="/static/home-posture.png" alt="Posture Icon">
+        </a>
+        <a href="/anatomy/2" class="box">
+          <p>Anatomy</p>
+          <img src="/static/home-anatomy.png" alt="Anatomy Icon">
+        </a>
+        <a href="/stretches/1" class="box">
+          <p>Stretches</p>
+          <img src="/static/home-stretches.png" alt="Stretches Icon">
+        </a>
+      </div>
+
+      <div class="buttonContainer">
+        <a href="/posture/1" class="startbutton">Start</a>
+        <a href="/quiz/1" class="startbutton">Quiz</a>
+      </div>
+
 
 
     </div>

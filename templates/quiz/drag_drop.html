@@ -14,6 +14,31 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script> -->
+    <style>
+        .draggable{
+            cursor: all-scroll;
+            width: 100%;
+        }
+
+        .draggable:hover{
+            background-color: #9fc7f3;
+        }
+
+        .droppable.ui-droppable-hover {
+            background: #3e6d9c;
+        }
+
+        .dropped {
+            background-color: #004080; /* Dark blue background */
+            color: #004080; /* Change text color to white for better visibility */
+        }
+
+        .white-text{
+            color: white;
+        }
+
+
+    </style>
     <script>
         function save_answer(answer) {
             $.ajax({
@@ -40,29 +65,32 @@
 
             $(".draggable").each(function () {
                 $(this).draggable({
-                    revert: "invalid"
+                    revert: "invalid",
+                    snap: ".droppable", // This makes the draggable snap to the droppable elements
+                    snapMode: "inner",
+                    snapTolerance: 80
                 });
             });
 
             $(".droppable").each(function () {
                 $(this).droppable({
+                    accept: ".draggable", // Accept only elements with this class
                     drop: function (event, ui) {
-                        let dragText = ui.draggable.find('div').text().trim();
-                        let dropText = $(this).find('div').text().trim();
+                        let dragText = ui.draggable.text().trim();
+                        let dropText = $(this).text().trim();
                         answer[dropText] = dragText
+                        $(this).addClass('dropped'); 
                     },
-                    // over: function (event, ui) {
-                    //     ui.helper.addClass("ui-over").addClass($(this).attr('id'));
-                    // },
-                    // out: function (event, ui) {
-                    //     ui.helper.removeClass("ui-over");
-                    // }
                 });
             });
 
             $(".nextbutton").click(function () {
                 save_answer(answer)
             });
+
+            $(".backbutton").click(function(){
+                window.location.href = '/quiz/{{quiz.id-1}}'
+            })
         });
     </script>
 </head>
@@ -74,18 +102,26 @@
 
         {% for drag in drags %}
         <div class="row gx-5 mt-2">
-            <div class="col draggable" id="draggable-{{ loop.index0 }}">
-                <div class="p-3 border bg-light">{{ drag }}</div>
+            <div class="col" >
+                <div class="draggable p-3 border" id="draggable-{{ loop.index0 }}">{{ drag }}</div>
             </div>
-            <div class="col droppable" id="droppable-{{ loop.index0 }}">
-                <div class="p-3 border bg-secondary" data-drag-id="">{{ drops[loop.index0] }}</div>
+            <div class="col" >
+                <div class="droppable p-3 border" id="droppable-{{ loop.index0 }}" data-drag-id="">{{ drops[loop.index0] }}</div>
             </div>
         </div>
         {% endfor %}
 
 
-        <button class="nextbutton mt-3">Next</button>
-
+        <div class="row mt-4">
+            {% if quiz.id-1 > 0 %}
+            <div class="col">
+                <button class="custom-button backbutton">Back</button>
+            </div>
+            {% endif %}
+            <div class="col">
+                <button class="custom-button nextbutton">Submit</button>
+            </div>
+        </div>
     </div>
 </body>
 

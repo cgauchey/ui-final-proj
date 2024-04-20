@@ -40,7 +40,7 @@ body {
   /* Custom icon color */
 }
 
-.startbutton {
+.custom-button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -48,10 +48,16 @@ body {
   text-align: center;
   text-decoration: none;
   outline: none;
-  color: #fff;
-  background-color: #4caf50;
   border: none;
   border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  width:100%;
+}
+
+
+.startbutton {
+  background-color: #4caf50;
 }
 
 .startbutton:hover {
@@ -59,22 +65,19 @@ body {
 }
 
 .nextbutton {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  background-color: #83c586;
-  border: none;
-  border-radius: 15px;
-  color: white;
-  font-weight: bold;
+  background-color: #4caf50;
 }
 
 .nextbutton:hover {
   background-color: #3e8e41;
+}
+
+.backbutton {
+  background-color: #0056b3;
+}
+
+.backbutton:hover {
+  background-color: #004080;
 }
 
 .active {

@@ -39,6 +39,10 @@
                 let answer = $('input[name="option"]:checked').val();
                 save_answer(answer)
             });
+
+            $(".backbutton").click(function(){
+                window.location.href = '/quiz/{{quiz.id-1}}'
+            })
         });
     </script>
 </head>
@@ -67,12 +71,14 @@
                     {% endfor %}
                 </ul>
 
-                <div class="row">
+                <div class="row mt-4">
+                    {% if quiz.id-1 > 0 %}
                     <div class="col">
-                        <button class="nextbutton mt-3">Submit</button>
+                        <button class="custom-button backbutton">Back</button>
                     </div>
+                    {% endif %}
                     <div class="col">
-                        <button class="nextbutton mt-3">Submit</button>
+                        <button class="custom-button nextbutton">Submit</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +110,7 @@
 
 </html>
 
-<!-- d-flex flex-column align-items-center -->
+d-flex flex-column align-items-center -->
 
         <!-- 
         <div class="row">

@@ -22,10 +22,10 @@
                 success: function (response) {
                     console.log('Results saved successfully');
 
-                    if ("{{quiz.next}}" === "end"){
-                        window.location.href='/quiz/results/1';
+                    if ("{{quiz.next}}" === "end") {
+                        window.location.href = '/quiz/results/1';
                     } else {
-                        window.location.href='/quiz/{{quiz.next}}';
+                        window.location.href = '/quiz/{{quiz.next}}';
                     }
                 },
                 error: function () {
@@ -36,7 +36,7 @@
 
         $(document).ready(function () {
             $(".nextbutton").click(function () {
-                let answer = $('input[name="option"]:checked').val(); 
+                let answer = $('input[name="option"]:checked').val();
                 save_answer(answer)
             });
         });
@@ -45,35 +45,85 @@
 
 <body>
     {% include 'navbar.html' %}
-    <div class="m-4 container">
+    <div class="m-4 container text-center">
 
         <h1>{{ quiz.question }}</h1>
-        
+
+
         <div class="row">
-            <form class="col">
-                {% for choice in quiz.choices %}
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="{{ choice }}" value="{{ choice }}">
-                    <label class="form-check-label" for="{{ choice }}">
-                        {{ choice }}
-                    </label>
-                </div>
-                {% endfor %}
-            </form>
-
-
+            <div class="col">
+            </div>
             <div class="col">
                 {% if quiz.image %}
-                    <img src="{{ quiz.image }}" class="img-fluid">
+                <img src="{{ quiz.image }}" class="img-fluid quiz-image">
                 {% endif %}
-            </div>
 
+                <ul class="quiz-list">
+                    {% for choice in quiz.choices %}
+                    <li>
+                        <input class="answer" type="radio" name="option" id="{{ choice }}" value="{{ choice }}">
+                        <label class="border p-3" for="{{ choice }}">{{ choice }}</label>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="row">
+                    <div class="col">
+                        <button class="nextbutton mt-3">Submit</button>
+                    </div>
+                    <div class="col">
+                        <button class="nextbutton mt-3">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
         </div>
 
-        <button class="nextbutton mt-3">Next</button>
+
+        <!-- 
+        <div class="text-center">
+            {% if quiz.image %}
+            <img src="{{ quiz.image }}" style="height: 300px;">
+            {% endif %}
+        </div>
+
+        <ul class="quiz-list">
+            {% for choice in quiz.choices %}
+            <li>
+                <input class="answer" type="radio" name="option" id="{{ choice }}" value="{{ choice }}">
+                <label class="border p-3" for="{{ choice }}">{{ choice }}</label>
+            </li>
+            {% endfor %}
+        </ul>
+
 
     </div>
 
 </body>
 
 </html>
+
+<!-- d-flex flex-column align-items-center -->
+
+        <!-- 
+        <div class="row">
+            <form class="col">
+                <ul class="quiz-list">
+                    {% for choice in quiz.choices %}
+                    <li>
+                        <input class="answer" type="radio" name="option" id="{{ choice }}" value="{{ choice }}">
+                        <label class="border p-3" for="{{ choice }}">{{ choice }}</label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </form>
+
+
+            <div class="col">
+                {% if quiz.image %}
+                <img src="{{ quiz.image }}" class="img-fluid">
+                {% endif %}
+            </div>
+
+        </div> -->

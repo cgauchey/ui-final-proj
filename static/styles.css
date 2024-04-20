@@ -11,7 +11,8 @@ body {
   border-bottom: 2px solid #004080; /* Slightly darker blue for depth */
 }
 
-.navbar-brand, .nav-link {
+.navbar-brand,
+.nav-link {
   color: #ffffff; /* White text for contrast */
 }
 
@@ -26,7 +27,12 @@ body {
 
 /* Mobile navbar toggle button */
 .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5); /* Light white border for the button */
+  border-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Light white border for the button */
 }
 
 .navbar-toggler-icon {
@@ -43,12 +49,14 @@ body {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   border-radius: 15px;
 }
 
-.startbutton:hover {background-color: #3e8e41}
+.startbutton:hover {
+  background-color: #3e8e41;
+}
 
 .nextbutton {
   display: inline-block;
@@ -58,32 +66,75 @@ body {
   text-align: center;
   text-decoration: none;
   outline: none;
-  color: rgb(32, 31, 31);
   background-color: #83c586;
   border: none;
   border-radius: 15px;
+  color: white;
+  font-weight: bold;
 }
 
-.nextbutton:hover {background-color: #3e8e41}
+.nextbutton:hover {
+  background-color: #3e8e41;
+}
 
 .active {
-  color: #4CAF50; /* or any color that indicates selection */
+  color: #4caf50; /* or any color that indicates selection */
   font-weight: bold;
 }
 
 /* Adjustments for small screens */
 @media (max-width: 992px) {
   .navbar-collapse {
-      background-color: #0056b3; /* Ensures the menu background matches */
+    background-color: #0056b3; /* Ensures the menu background matches */
   }
 
   .nav-link {
-      padding: 10px 20px; /* Larger tap/click targets for mobile */
-      text-align: center; /* Center-align text for a better visual on small screens */
-      border-bottom: 1px solid #004080; /* Separates items visually */
+    padding: 10px 20px; /* Larger tap/click targets for mobile */
+    text-align: center; /* Center-align text for a better visual on small screens */
+    border-bottom: 1px solid #004080; /* Separates items visually */
   }
 
   .nav-item:last-child .nav-link {
-      border-bottom: none; /* Removes border from the last item */
+    border-bottom: none; /* Removes border from the last item */
   }
+}
+
+/* quiz styling */
+.quiz-image {
+  margin: 1rem 0 1rem 0;
+}
+
+/* Style the quiz list, removing default list styling */
+.quiz-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style only li elements within quiz-list */
+.quiz-list li {
+  margin-top: 1rem;
+}
+
+/* Hide radio buttons within quiz-list only */
+.quiz-list li input[type="radio"] {
+  display: none;
+}
+
+/* Style labels within quiz-list to look like clickable boxes */
+.quiz-list li label {
+  cursor: pointer;
+  background-color: white;
+  display: block;
+  transition: 0.1s ease;
+}
+
+/* Hover effect for labels within quiz-list */
+.quiz-list li input[type="radio"]:hover + label {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+/* Checked state style for labels within quiz-list */
+.quiz-list li input[type="radio"]:checked + label {
+  background-color: #9fc7f3;
 }

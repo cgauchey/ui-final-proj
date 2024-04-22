@@ -84,7 +84,7 @@
                 });
             });
 
-            $(".nextbutton").click(function () {
+            $(".greenbutton").click(function () {
                 save_answer(answer)
             });
 
@@ -113,13 +113,8 @@
 
 
         <div class="row mt-4">
-            {% if quiz.id-1 > 0 %}
             <div class="col">
-                <button class="custom-button backbutton">Back</button>
-            </div>
-            {% endif %}
-            <div class="col">
-                <button class="custom-button nextbutton">Submit</button>
+                <button class="custombutton greenbutton">Submit</button>
             </div>
         </div>
     </div>

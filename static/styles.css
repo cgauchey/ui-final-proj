@@ -40,7 +40,7 @@ body {
   /* Custom icon color */
 }
 
-.custom-button {
+.custombutton {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -64,19 +64,19 @@ body {
   background-color: #3e8e41;
 }
 
-.nextbutton {
+.greenbutton {
   background-color: #4caf50;
 }
 
-.nextbutton:hover {
+.greenbutton:hover {
   background-color: #3e8e41;
 }
 
-.backbutton {
+.bluebutton {
   background-color: #0056b3;
 }
 
-.backbutton:hover {
+.bluebutton:hover {
   background-color: #004080;
 }
 
@@ -129,6 +129,7 @@ body {
   background-color: white;
   display: block;
   transition: 0.1s ease;
+  text-align: left;
 }
 
 /* Hover effect for labels within quiz-list */
@@ -140,4 +141,20 @@ body {
 /* Checked state style for labels within quiz-list */
 .quiz-list li input[type="radio"]:checked + label {
   background-color: #9fc7f3;
+}
+
+.quiz-list li label.correct-answer {
+  background-color: rgba(0, 173, 0, 0.374);
+}
+
+.quiz-list li label.incorrect-answer {
+  background-color: rgb(244, 186, 186);
+}
+
+#quiz-choices-disabled {
+  display: none;
+}
+
+#next {
+  display: none;
 }

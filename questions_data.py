@@ -77,7 +77,7 @@ questions = {
         "id": 8,
         "type": "mcq",
         "question": "Which stretch is demonstrated in the image on the right?",
-        "choices": ["Cat Cow", "Angel Wings", "Cat Cow", "Wall Angel"],
+        "choices": ["Cat Cow", "Angel Wings", "Chest Stretch", "Wall Angel"],
         "image": "https://media.post.rvohealth.io/wp-content/uploads/sites/2/2021/04/GRT-1.7.Wall-Angels.gif",
         "answer": "Wall Angel",
         "next": 9,
@@ -88,7 +88,7 @@ questions = {
         "question": "If you are experiencing upper back pain, which stretch will be the most effective?",
         "choices": ["Hamstring Stretch", "Thoracic Extension Stretch", "Hip Flexor Stretch", "Pectoral Stretch"],
         "image": "https://www.microspinemd.com/wp-content/uploads/2019/10/upper-back-pain.png",
-        "answer": "Wall Angel",
+        "answer": "Thoracic Extension Stretch",
         "next": "end",
     },
 

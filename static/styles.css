@@ -57,6 +57,10 @@ h1 {
   font-family: 'Raleway', sans-serif;
 }
 
+h3{
+  color: black;
+}
+
 .homeDescription {
   font-size: 28px;
   text-align: center;
@@ -95,13 +99,10 @@ h1 {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   /* Custom icon color */
 }
-
 .custombutton {
   display: inline-block;
-  padding: 10px 90px;
-
-  margin: 20px;
-  font-size: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -114,13 +115,20 @@ h1 {
 }
 
 
-
 .startbutton {
-  background-color: #4caf50;
-}
+  display: inline-block;
+  padding: 10px 90px;
 
-.startbutton:hover {
-  background-color: #3e8e41;
+  margin: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
 }
 
 .greenbutton {
@@ -142,6 +150,7 @@ h1 {
 .active {
   color: #4caf50; /* or any color that indicates selection */
   font-weight: bold;
+}
 
 .nextbutton {
   display: inline-block;

@@ -67,6 +67,7 @@ h1 {
   background-color: #c9daf8ff; /* A nice shade of blue */
 }
 
+
 .navbar-brand, .nav-link {
   color: #666666;
   font-size: larger;
@@ -82,7 +83,12 @@ h1 {
 
 /* Mobile navbar toggle button */
 .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5); /* Light white border for the button */
+  border-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Light white border for the button */
 }
 
 .navbar-toggler-icon {
@@ -90,7 +96,7 @@ h1 {
   /* Custom icon color */
 }
 
-.startbutton {
+.custombutton {
   display: inline-block;
   padding: 10px 90px;
 
@@ -100,12 +106,42 @@ h1 {
   text-align: center;
   text-decoration: none;
   outline: none;
-  color: #fff;
-  background-color: #1c4587ff;
   border: none;
   border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  width:100%;
 }
 
+
+
+.startbutton {
+  background-color: #4caf50;
+}
+
+.startbutton:hover {
+  background-color: #3e8e41;
+}
+
+.greenbutton {
+  background-color: #4caf50;
+}
+
+.greenbutton:hover {
+  background-color: #3e8e41;
+}
+
+.bluebutton {
+  background-color: #0056b3;
+}
+
+.bluebutton:hover {
+  background-color: #004080;
+}
+
+.active {
+  color: #4caf50; /* or any color that indicates selection */
+  font-weight: bold;
 
 .nextbutton {
   display: inline-block;
@@ -131,6 +167,7 @@ h1 {
 /* Adjustments for small screens */
 @media (max-width: 992px) {
   .navbar-collapse {
+
       background-color: #1c4587ff; /* Ensures the menu background matches */
   }
 
@@ -141,8 +178,65 @@ h1 {
   }
 
   .nav-item:last-child .nav-link {
-      border-bottom: none; /* Removes border from the last item */
+    border-bottom: none; /* Removes border from the last item */
   }
+}
+
+/* quiz styling */
+.quiz-image {
+  margin: 1rem 0 1rem 0;
+}
+
+/* Style the quiz list, removing default list styling */
+.quiz-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style only li elements within quiz-list */
+.quiz-list li {
+  margin-top: 1rem;
+}
+
+/* Hide radio buttons within quiz-list only */
+.quiz-list li input[type="radio"] {
+  display: none;
+}
+
+/* Style labels within quiz-list to look like clickable boxes */
+.quiz-list li label {
+  cursor: pointer;
+  background-color: white;
+  display: block;
+  transition: 0.1s ease;
+  text-align: left;
+}
+
+/* Hover effect for labels within quiz-list */
+.quiz-list li input[type="radio"]:hover + label {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+/* Checked state style for labels within quiz-list */
+.quiz-list li input[type="radio"]:checked + label {
+  background-color: #9fc7f3;
+}
+
+.quiz-list li label.correct-answer {
+  background-color: rgba(0, 173, 0, 0.374);
+}
+
+.quiz-list li label.incorrect-answer {
+  background-color: rgb(244, 186, 186);
+}
+
+#quiz-choices-disabled {
+  display: none;
+}
+
+#next {
+  display: none;
 }
 
 .forward-head

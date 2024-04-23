@@ -97,8 +97,8 @@
 
 <body>
     {% include 'navbar.html' %}
-    <div class="m-4 container">
-        <h1>{{ quiz.question }}</h1>
+    <div class="container flex-column" style="font-family: 'Raleway', sans-serif;">
+        <h3>{{ quiz.question }}</h3>
 
         {% for drag in drags %}
         <div class="row gx-5 mt-2">

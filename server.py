@@ -120,6 +120,10 @@ back_stretchlist = {
 def homepage():
     return render_template("homepage.html")
 
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204
+
 
 @app.route("/posture/<int:item_id>")
 def posture(item_id):
@@ -132,12 +136,13 @@ def posture(item_id):
 
 @app.route("/anatomy/<int:item_id>")
 def anatomy(item_id):
-    anatomy = anatomies[str(item_id)]
+    #anatomy = anatomies[str(item_id)]
+    #print(anatomies)
     if item_id == len(anatomies):
         next_url = '/stretches/1'
     else:
         next_url = str(item_id+1)
-    return render_template('learn/anatomy/anatomy_carousel.html', anatomy=anatomy, next_url=next_url)
+    return render_template('learn/anatomy/anatomy_carousel.html', anatomies=anatomies, next_url=next_url)
 
 
 @app.route("/stretches/<int:item_id>")

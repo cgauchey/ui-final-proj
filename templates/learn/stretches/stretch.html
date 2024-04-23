@@ -10,13 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     {% include 'navbar.html' %}
     <div>
-      <h1>Strech #1</h1>
-      <a href="/quiz/1" class="nextbutton">Next</a>
+      <h1>We need to {{ stretch.action }} the {{ stretch.target }} muscles.</h1>
+      <h2>{{ stretch.title }}</h2>
+      <img src="{{ stretch.media }}" alt="Stretch Image">
+      <div>
+          <ul>
+              {% for step in stretch.text %}
+              <li>{{ step }}</li>
+              {% endfor %}
+          </ul>
+      </div>
+      <a href="{{ next_url }}" class="nextbutton">Next</a>
 
     </div>
 

@@ -1,19 +1,76 @@
 body {
-  font-family: Arial, sans-serif; /* Ensures the font is pleasant and readable */
+  font-family: 'Open Sans', sans-serif; /* Ensures the font is pleasant and readable */
+  font-style: normal;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4; /* A light grey background */
+  color: #666666;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  width: 70%;
+  margin-bottom: 50px;
+}
+
+.box {
+  width: 300px; /* Keeps the thinner width */
+  background-color: white;
+  padding: 20px;
+  border: 2px solid #666666; /* Adds a pink outline */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+  text-align: center; /* Centers the text and image within the box */
+  text-decoration: none; /* Removes underline from links */
+  color: black; /* Ensures text is black and not the default blue of hyperlinks */
+}
+
+.box img {
+  width: auto; /* Adjusts width to maintain aspect ratio */
+  height: 200px; /* Sets the image height to 100px */
+  margin-top: 10px; /* Adds some space between the text and the image */
+}
+
+.box p {
+  font-size: 28px; /* Increases the font size for the text */
+  margin-top: 0; /* Adjusts spacing to the top */
+  margin-bottom: 10px; /* Adds some space below the text */
+  font-weight: bold;
+}
+
+
+/* Style for the header inside the div */
+h1 {
+  font-size: 72px;
+  padding-top: 50px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  padding-bottom: 25px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.homeDescription {
+  font-size: 28px;
+  text-align: center;
 }
 
 /* Navbar customizations */
 .navbar-custom {
-  background-color: #0056b3; /* A nice shade of blue */
-  border-bottom: 2px solid #004080; /* Slightly darker blue for depth */
+  background-color: #c9daf8ff; /* A nice shade of blue */
 }
 
-.navbar-brand,
-.nav-link {
-  color: #ffffff; /* White text for contrast */
+
+.navbar-brand, .nav-link {
+  color: #666666;
+  font-size: larger;
 }
 
 .nav-link {
@@ -21,8 +78,7 @@ body {
 }
 
 .nav-link:hover {
-  background-color: #004080; /* Darker blue on hover for interactive feel */
-  border-radius: 5px; /* Slightly rounded corners on hover */
+  color: #1c4587ff
 }
 
 /* Mobile navbar toggle button */
@@ -42,8 +98,10 @@ body {
 
 .custombutton {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 10px 90px;
+
+  margin: 20px;
+  font-size: 20px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -54,6 +112,7 @@ body {
   font-weight: bold;
   width:100%;
 }
+
 
 
 .startbutton {
@@ -83,18 +142,39 @@ body {
 .active {
   color: #4caf50; /* or any color that indicates selection */
   font-weight: bold;
+
+.nextbutton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(32, 31, 31);
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
+}
+
+.nextbutton:hover {background-color: #1c4587ff}
+
+.active {
+
+  font-weight: bolder;
 }
 
 /* Adjustments for small screens */
 @media (max-width: 992px) {
   .navbar-collapse {
-    background-color: #0056b3; /* Ensures the menu background matches */
+
+      background-color: #1c4587ff; /* Ensures the menu background matches */
   }
 
   .nav-link {
-    padding: 10px 20px; /* Larger tap/click targets for mobile */
-    text-align: center; /* Center-align text for a better visual on small screens */
-    border-bottom: 1px solid #004080; /* Separates items visually */
+      padding: 10px 20px; /* Larger tap/click targets for mobile */
+      text-align: center; /* Center-align text for a better visual on small screens */
+      border-bottom: 1px solid #1c4587ff; /* Separates items visually */
   }
 
   .nav-item:last-child .nav-link {
@@ -157,4 +237,64 @@ body {
 
 #next {
   display: none;
+}
+
+.forward-head
+{
+  width: 50px;
+}
+
+/* carousel styling */
+
+
+.carousel
+{
+  position: relative;
+  text-align: center;
+}
+
+.carousel__item
+{
+  height: 200px;
+  width: 500px;
+  background: #c9daf8ff;
+  padding: 1em;
+  margin-top: 40px;
+  display: none;
+  border-radius: 50px;
+  color: black;
+  border: 1px solid black;
+}
+
+.carousel__item--selected
+{
+  display: inline-block;
+}
+
+.carousel__nav
+{
+  width: 100%;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.carousel__button
+{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background: lightgray;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.carousel__button--selected
+{
+  background: rgba(0, 0, 139, 1);
 }

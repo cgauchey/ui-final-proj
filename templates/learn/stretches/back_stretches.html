@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Results</title>
+    <title>Forward Head</title>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -15,13 +15,16 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="m-4 container">
-
-        <h1>Quiz Results</h1>
-        <div>Congratulations, your score is {{final_score}} !</div>
-
+    <div>
+        {% for key, stretch in back_stretchlist.items() %}
+            <h2>{{ stretch['part'] }}</h2>
+                <img src=" {{ stretch.image }}">
+                {% for stretch_name in stretch['stretch_names'] %}
+                    <p>{{ stretch_name }}</p>
+                {% endfor %}
+        {% endfor %}
     </div>
-
+    <a href="/quiz/1" class="nextbutton">Next</a>
 
 </body>
 </html>

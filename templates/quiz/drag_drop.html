@@ -41,21 +41,28 @@
     </style>
     <script>
         function save_answer(answer) {
+            var answerData = {
+            quizId: "{{ quiz.id }}",  // Assuming quiz.id is available from your backend
+            answer: answer
+            };
+
             $.ajax({
-                url: '/save_answer',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(answer),
-                success: function (response) {
-                    console.log('Results saved successfully');
-                    if ("{{quiz.next}}" === "end"){
-                        window.location.href='/quiz/results/1';
-                    } else {
-                        window.location.href='/quiz/{{quiz.next}}';
-                    }                },
-                error: function () {
-                    console.log('Error saving results');
+            url: "/save_answer",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(answerData),
+            success: function (response) {
+                console.log("Results saved successfully");
+
+                if ("{{quiz.next}}" === "end") {
+                window.location.href = "/quiz/results/1";
+                } else {
+                window.location.href = "/quiz/{{quiz.next}}";
                 }
+            },
+            error: function () {
+                console.log("Error saving results");
+            },
             });
         }
 

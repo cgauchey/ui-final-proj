@@ -17,21 +17,26 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/static/styles.css" />
+    <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
     <script>
+      var correctSVG =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="green" style="float:right; margin-top: 2px;" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>';
+      var wrongSVG =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(182, 24, 24)" style="float:right; margin-top: 2px;" viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/></svg>';
+
       function save_answer(answer) {
+        var answerData = {
+          quizId: "{{ quiz.id }}",
+          answer: answer
+        };
+
         $.ajax({
           url: "/save_answer",
           type: "POST",
           contentType: "application/json",
-          data: JSON.stringify(answer),
+          data: JSON.stringify(answerData),
           success: function (response) {
             console.log("Results saved successfully");
-
-            if ("{{quiz.next}}" === "end") {
-              window.location.href = "/quiz/results/1";
-            } else {
-              window.location.href = "/quiz/{{quiz.next}}";
-            }
           },
           error: function () {
             console.log("Error saving results");
@@ -39,49 +44,75 @@
         });
       }
 
+      function next_page() {
+        if ("{{quiz.next}}" === "end") {
+          window.location.href = "/quiz/results/1";
+        } else {
+          window.location.href = "/quiz/{{quiz.next}}";
+        }
+      }
+
+      function back_page(){
+        window.location.href = '/quiz/{{quiz.id-1}}'
+      }
+
       $(document).ready(function () {
-        var correctSVG =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="green" style="float:right; margin-top: 2px;" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>';
-        var wrongSVG =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(182, 24, 24)" style="float:right; margin-top: 2px;" viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/></svg>';
+        let isAnswered = {{ is_answered | tojson}};
+        let correctAnswer = "{{ quiz.answer }}";
+        let userAnswer = "{{ user_answer }}";
 
-        $("#submit").click(function () {
-          let userAnswer = $('input[name="option"]:checked').val();
-          let correctAnswer = "{{ quiz.answer }}";
+        function updateChoiceDisplay() {
+          $("#quiz-choices").toggle(!isAnswered);
+          $("#quiz-choices-disabled").toggle(isAnswered);
+          $("#submit").toggle(!isAnswered);
+          $("#next").toggle(isAnswered);
+        }
 
-          $("#quiz-choices").hide();
-          $("#quiz-choices-disabled").show();
-
-          $("#submit").hide();
-          $("#next").show();
-
-          // Iterate over the disabled list to apply styles
+        function applyAnswerStyles() {
           $("#quiz-choices-disabled label").each(function () {
             let choiceText = $(this).text().trim();
-
             if (choiceText === correctAnswer) {
-              $(this).addClass("correct-answer");
-              $(this).append(correctSVG);
+              $(this).addClass("correct-answer").append(correctSVG);
             }
             if (choiceText === userAnswer && userAnswer !== correctAnswer) {
-              $(this).addClass("incorrect-answer");
-              $(this).append(wrongSVG);
+              $(this).addClass("incorrect-answer").append(wrongSVG);
             }
           });
+        }
+
+        // Set initial display based on whether the quiz has been answered
+        updateChoiceDisplay();
+        if (isAnswered) {
+          applyAnswerStyles();
+        }
+
+        // Handle submit action
+        $("#submit").click(function () {
+          userAnswer = $('input[name="option"]:checked').val();
+          isAnswered = true;
+
+          updateChoiceDisplay();
+          applyAnswerStyles();
+          save_answer(userAnswer);
         });
 
         $("#next").click(function () {
-          let userAnswer = $('input[name="option"]:checked').val();
-          save_answer(userAnswer);
+          next_page();
         });
-        
+
+        $("#back").click(function () {
+          back_page();
+        });
       });
     </script>
   </head>
 
   <body>
     {% include 'navbar.html' %}
-    <div class="container flex-column" style="font-family: 'Raleway', sans-serif;">
+    <div
+      class="container flex-column"
+      style="font-family: 'Raleway', sans-serif"
+    >
       <h3 class="text-center">{{ quiz.question }}</h3>
 
       <div class="row">
@@ -115,6 +146,11 @@
           </ul>
 
           <div class="row mt-4">
+            {% if quiz.id-1 > 0 %}
+            <div class="col">
+                <button id="back" class="custombutton bluebutton">Back</button>
+            </div>
+            {% endif %}
             <div class="col">
               <button id="submit" class="custombutton greenbutton">
                 Submit
@@ -125,53 +161,6 @@
         </div>
         <div class="col"></div>
       </div>
-
-      <!-- 
-        <div class="text-center">
-            {% if quiz.image %}
-            <img src="{{ quiz.image }}" style="height: 300px;">
-            {% endif %}
-        </div>
-
-        <ul class="quiz-list">
-            {% for choice in quiz.choices %}
-            <li>
-                <input class="answer" type="radio" name="option" id="{{ choice }}" value="{{ choice }}">
-                <label class="border p-3" for="{{ choice }}">{{ choice }}</label>
-            </li>
-            {% endfor %}
-        </ul>
-
-
-    </div>
-
-</body>
-
-</html>
-
-d-flex flex-column align-items-center -->
-
-      <!-- 
-        <div class="row">
-            <form class="col">
-                <ul class="quiz-list">
-                    {% for choice in quiz.choices %}
-                    <li>
-                        <input class="answer" type="radio" name="option" id="{{ choice }}" value="{{ choice }}">
-                        <label class="border p-3" for="{{ choice }}">{{ choice }}</label>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </form>
-
-
-            <div class="col">
-                {% if quiz.image %}
-                <img src="{{ quiz.image }}" class="img-fluid">
-                {% endif %}
-            </div>
-
-        </div> -->
     </div>
   </body>
 </html>

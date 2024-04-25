@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 
 # current_id = 1
-answers = []
+answers = {}
 
 
 
@@ -159,10 +159,19 @@ def back_stretches():
 @app.route("/quiz/<int:item_id>")
 def quiz(item_id):
 
-    # reset user's answers if we are restarting from first question
     global answers
-    if item_id == 1:
-        answers = []
+
+    # reset user's answers if we are restarting from first question
+    # if item_id == 1:
+    #     answers = []
+
+    #check whether user has already answered this question
+    if item_id in answers:
+        is_answered = True 
+        user_answer = answers[item_id]
+    else:
+        is_answered = False 
+        user_answer = None
 
     quiz_data = questions.get(item_id)
     if not quiz_data:
@@ -178,12 +187,12 @@ def quiz(item_id):
         random.shuffle(drops)
 
         return render_template(
-            "quiz/drag_drop.html", quiz=quiz_data, drags=drags, drops=drops
+            "quiz/drag_drop.html", quiz=quiz_data, drags=drags, drops=drops, is_answered=is_answered
         )
 
     # mcq
     elif quiz_data["type"] == "mcq":
-        return render_template("quiz/mc.html", quiz=quiz_data)
+        return render_template("quiz/mc.html", quiz=quiz_data, is_answered=is_answered, user_answer=user_answer)
 
 
 @app.route("/quiz/results/<int:item_id>")
@@ -202,13 +211,13 @@ def get_quiz_results():
     for i in range(1, len(questions) + 1):
         # mcq
         if questions[i]["type"] == "mcq":
-            if answers[i - 1] != questions[i]["answer"]:
+            if answers[i] != questions[i]["answer"]:
                 final_score -= 1
 
         # drag and drop
         else:
             # sort dictionaries and compare
-            user_ans = sorted(answers[i - 1].items())
+            user_ans = sorted(answers[i].items())
             correct_ans = sorted(questions[i]["answer"].items())
 
             if user_ans != correct_ans:
@@ -222,7 +231,11 @@ def get_quiz_results():
 def save_answer():
     global answers
     answer = request.get_json()
-    answers.append(answer)
+
+    quiz_id = int(answer['quizId'])
+    user_answer = answer['answer']
+
+    answers[quiz_id] = user_answer
     return answer
 
 

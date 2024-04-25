@@ -14,23 +14,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script> -->
+    <style>
+        .draggable{
+            cursor: all-scroll;
+            width: 100%;
+        }
+
+        .draggable:hover{
+            background-color: #9fc7f3;
+        }
+
+        .droppable.ui-droppable-hover {
+            background: #3e6d9c;
+        }
+
+        .dropped {
+            background-color: #004080; /* Dark blue background */
+            color: #004080; /* Change text color to white for better visibility */
+        }
+
+        .white-text{
+            color: white;
+        }
+
+
+    </style>
     <script>
         function save_answer(answer) {
+            var answerData = {
+            quizId: "{{ quiz.id }}",  // Assuming quiz.id is available from your backend
+            answer: answer
+            };
+
             $.ajax({
-                url: '/save_answer',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(answer),
-                success: function (response) {
-                    console.log('Results saved successfully');
-                    if ("{{quiz.next}}" === "end"){
-                        window.location.href='/quiz/results/1';
-                    } else {
-                        window.location.href='/quiz/{{quiz.next}}';
-                    }                },
-                error: function () {
-                    console.log('Error saving results');
+            url: "/save_answer",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(answerData),
+            success: function (response) {
+                console.log("Results saved successfully");
+
+                if ("{{quiz.next}}" === "end") {
+                window.location.href = "/quiz/results/1";
+                } else {
+                window.location.href = "/quiz/{{quiz.next}}";
                 }
+            },
+            error: function () {
+                console.log("Error saving results");
+            },
             });
         }
 
@@ -40,52 +72,58 @@
 
             $(".draggable").each(function () {
                 $(this).draggable({
-                    revert: "invalid"
+                    revert: "invalid",
+                    snap: ".droppable", // This makes the draggable snap to the droppable elements
+                    snapMode: "inner",
+                    snapTolerance: 80
                 });
             });
 
             $(".droppable").each(function () {
                 $(this).droppable({
+                    accept: ".draggable", // Accept only elements with this class
                     drop: function (event, ui) {
-                        let dragText = ui.draggable.find('div').text().trim();
-                        let dropText = $(this).find('div').text().trim();
+                        let dragText = ui.draggable.text().trim();
+                        let dropText = $(this).text().trim();
                         answer[dropText] = dragText
+                        $(this).addClass('dropped'); 
                     },
-                    // over: function (event, ui) {
-                    //     ui.helper.addClass("ui-over").addClass($(this).attr('id'));
-                    // },
-                    // out: function (event, ui) {
-                    //     ui.helper.removeClass("ui-over");
-                    // }
                 });
             });
 
-            $(".nextbutton").click(function () {
+            $(".greenbutton").click(function () {
                 save_answer(answer)
             });
+
+            $(".backbutton").click(function(){
+                window.location.href = '/quiz/{{quiz.id-1}}'
+            })
         });
     </script>
 </head>
 
 <body>
     {% include 'navbar.html' %}
-    <div class="m-4 container">
-        <h1>{{ quiz.question }}</h1>
+    <div class="container flex-column" style="font-family: 'Raleway', sans-serif;">
+        <h3>{{ quiz.question }}</h3>
 
         {% for drag in drags %}
         <div class="row gx-5 mt-2">
-            <div class="col draggable" id="draggable-{{ loop.index0 }}">
-                <div class="p-3 border bg-light">{{ drag }}</div>
+            <div class="col" >
+                <div class="draggable p-3 border" id="draggable-{{ loop.index0 }}">{{ drag }}</div>
             </div>
-            <div class="col droppable" id="droppable-{{ loop.index0 }}">
-                <div class="p-3 border bg-secondary" data-drag-id="">{{ drops[loop.index0] }}</div>
+            <div class="col" >
+                <div class="droppable p-3 border" id="droppable-{{ loop.index0 }}" data-drag-id="">{{ drops[loop.index0] }}</div>
             </div>
         </div>
         {% endfor %}
 
 
-        <button class="nextbutton mt-3">Next</button>
-
+        <div class="row mt-4">
+            <div class="col">
+                <button class="custombutton greenbutton">Submit</button>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -1,24 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css">
+    
+    <script>
+        function clear_quiz_answers() {
+            $.ajax({
+            url: "/clear_quiz_answers",
+            type: "POST",
+            contentType: "application/json",
+            data: "",
+            success: function (response) {
+                window.location.href = '/quiz/1'
+            },
+            error: function () {
+                console.log("Error clearing");
+            },
+            });
+        }
+
+        $(document).ready(function () {
+
+            // event handler restart button
+            $("#restart").click(function () {
+                clear_quiz_answers();
+            });
+
+            //donut chart
+            var scores = {{ final_score | tojson}};
+            var num_correct = scores[0];
+            var num_wrong = scores[1];
+            var total = num_correct + num_wrong;
+
+            var ctx = $('#myDonutChart');
+
+            var myDonutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['correct', 'wrong'],
+                    datasets: [{
+                        label: '# of questions',
+                        data: [num_correct, num_wrong],
+                        backgroundColor: [
+                            'rgba(0, 173, 0, 0.692)',
+                            'rgb(245, 148, 148)',
+                        ],
+                        borderColor: [
+                            '#3e8e41',
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    cutout: '50%', // This makes it a donut chart
+                    maintainAspectRatio: true,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                    }
+                }
+            });
+
+            //question square links
+            const results = {{ results | tojson}};
+            const container = $('#squares-container');
+
+            results.forEach((result, index) => {
+                const item_id = index + 1;
+                const link = $('<a href="/quiz/' + item_id + '" class="no_underline"></a>');
+                const square = $('<div class="square ' + (result ? 'correct' : 'incorrect') + '">' + item_id + '</div>');
+                link.append(square);
+                container.append(link);
+            });
+        });
+    </script>
+
 </head>
+
 <body>
     {% include 'navbar.html' %}
-    <div class="container flex-column" style="font-family: 'Raleway', sans-serif;">
-        <h1>Quiz Results</h1>
-        <div>Congratulations, your score is {{final_score}} !</div>
-
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <h1 class="remove-padding">Quiz Results: <span style="color: #3e8e41">{{percentage}}</span></h1>
+        <div id="chartContainer" class="mt-3 mb-3">
+            <canvas id="myDonutChart"></canvas>
+        </div>
+    
+        <div class="mt-3">Click on a question to review:</div>
+        <div id="squares-container" style="display: flex; justify-content: space-evenly;"></div>
+    
+    
+        <div class="buttonContainer">
+            <a href="/posture/1" class="startbutton bluebutton">Learn</a>
+            <button id="restart" class=" startbutton greenbutton" style="padding: 10px 60px;">Restart Quiz</button>
+        </div>
+    
+    
     </div>
 </body>
+
 </html>

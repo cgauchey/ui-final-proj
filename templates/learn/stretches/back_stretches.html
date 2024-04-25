@@ -18,10 +18,10 @@
     <div>
         {% for key, stretch in back_stretchlist.items() %}
             <h2>{{ stretch['part'] }}</h2>
-                <img src=" {{ stretch.image }}">
                 {% for stretch_name in stretch['stretch_names'] %}
                     <p>{{ stretch_name }}</p>
                 {% endfor %}
+            <img src=" {{ stretch.image }}">
         {% endfor %}
     </div>
     <a href="/quiz/1" class="nextbutton">Next</a>

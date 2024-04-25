@@ -94,21 +94,21 @@ back_stretchlist = {
     "1": {
         "item_id": "1",
         "part": "Upper Back",
-        "image" : "https://img.freepik.com/premium-vector/back-muscles-educational-anatomical-diagram-posterior-model-human-structure-arrangement_193165-244.jpg",
+        "image" : "../../../static/upper.png",
         "stretch_names": ["Mindful shoulder circles", "Thoracic extension stretch", "Angel wings", "Shoulder stretch", "Neck stretch"]
     },
     "2":
     {
         "item_id": "2",
         "part": "Lower Back",
-        "image" : "https://img.freepik.com/premium-vector/back-muscles-educational-anatomical-diagram-posterior-model-human-structure-arrangement_193165-244.jpg",
+        "image" : "../../../static/lower.png",
         "stretch_names": ["Cat cow", "Extended puppy pose", "Locust Pose"]
     },
     "3":
     {
         "item_id": "3",
         "part": "Both",
-        "image" : "https://img.freepik.com/premium-vector/back-muscles-educational-anatomical-diagram-posterior-model-human-structure-arrangement_193165-244.jpg",
+        "image" : "../../../static/both.png",
         "stretch_names": ["Thoracic rotation", "Sphinx", "Dynamic camel"]
     },
 

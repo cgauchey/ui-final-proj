@@ -15,16 +15,28 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div>
+    <div class="container">
+        <div class="row">
         {% for key, stretch in back_stretchlist.items() %}
-            <h2>{{ stretch['part'] }}</h2>
-                {% for stretch_name in stretch['stretch_names'] %}
-                    <p>{{ stretch_name }}</p>
-                {% endfor %}
-            <img src=" {{ stretch.image }}">
+            <div class="col-md-4">
+                <div class="stretchbox">
+                    <h4><strong>{{ stretch['part'] }}</strong></h4>
+                        {% for stretch_name in stretch['stretch_names'] %}
+                            <p>{{ stretch_name }}</p>
+                        {% endfor %}
+                </div>
+                <img src=" {{ stretch.image }}">
+            </div>
         {% endfor %}
+        </div>
     </div>
-    <a href="/quiz/1" class="nextbutton">Next</a>
+    <span class="buttonContainer">
+        <a href="/" class="startbutton"><strong>Back to Home</strong></a>
+        <a href="/quiz/1" class="startquizbutton"><strong>Start Quiz</strong></a>
+    </span>
+    <span class="buttonContainer">
+        
+    </span>
 
 </body>
 </html>

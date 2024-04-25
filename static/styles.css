@@ -427,6 +427,38 @@ h3{
   border-radius: 15px;
 }
 
+.stretchbox
+{
+  text-align: center;
+  height: 280px;
+  width: 250px;
+  background: #c9daf8ff;
+  padding: 1em;
+  margin-top: -20px;
+  margin-left: 30px;
+  margin-right: 500px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  color: black;
+  border: 1px solid black;
+}
+
+.startquizbutton {
+  display: inline-block;
+  padding: 10px 90px;
+
+  margin: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(28, 135, 28);
+  border: none;
+  border-radius: 15px;
+}
+
 
 
 /* results-styles */

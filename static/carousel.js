@@ -1,8 +1,37 @@
 $(document).ready(function() {
+    $(".prev-slide").click(function() {
+        let currentSlide = $(".carousel__item--selected");
+        let prevSlide = currentSlide.prev();
+
+        if (prevSlide.length === 0) {
+            prevSlide = $(".carousel__item").last();
+        }
+
+        currentSlide.removeClass("carousel__item--selected");
+        prevSlide.addClass("carousel__item--selected");
+
+        updateNavButtons();
+    });
+
+    $(".next-slide").click(function() {
+        let currentSlide = $(".carousel__item--selected");
+        let index = $(".carousel__item--selected").index();
+        let nextSlide = currentSlide.next();
+        // if the current slide is the last out of four slides
+        if (index === 3) {
+            nextSlide = $(".carousel__item").first();
+        }
+
+        currentSlide.removeClass("carousel__item--selected");
+        nextSlide.addClass("carousel__item--selected");
+
+        updateNavButtons();
+
+    });
     $(".carousel").each(function() {
-        var carousel = $(this);
-        var items = carousel.find(".carousel__item");
-        var buttonsHtml = items.map(function() {
+        let carousel = $(this);
+        let items = carousel.find(".carousel__item");
+        let buttonsHtml = items.map(function() {
             return '<span class="carousel__button"></span>';
         }).get();
 
@@ -12,9 +41,7 @@ $(document).ready(function() {
             '</div>'
         );
 
-        var buttons = carousel.find(".carousel__button");
-        var prevButton = carousel.find(".prev");
-        var nextButton = carousel.find(".next");
+        let buttons = carousel.find(".carousel__button");
 
         buttons.each(function(i) {
             $(this).on("click", function() {
@@ -30,39 +57,12 @@ $(document).ready(function() {
         // Select the first item on page load
         items.first().addClass("carousel__item--selected");
         buttons.first().addClass("carousel__button--selected");
-
-        // Event listener for next button
-        nextButton.on("click", function() {
-            var current = carousel.find(".carousel__item--selected");
-            var next = current.next(".carousel__item");
-
-            if (next.length === 0) {
-                next = items.first(); // Loop back to the first item
-            }
-
-            current.removeClass("carousel__item--selected");
-            next.addClass("carousel__item--selected");
-
-            // Update button selection if needed
-            buttons.removeClass("carousel__button--selected");
-            buttons.eq(next.index()).addClass("carousel__button--selected");
-        });
-
-        // Event listener for previous button
-        prevButton.on("click", function() {
-            var current = carousel.find(".carousel__item--selected");
-            var prev = current.prev(".carousel__item");
-
-            if (prev.length === 0) {
-                prev = items.last(); // Loop back to the last item
-            }
-
-            current.removeClass("carousel__item--selected");
-            prev.addClass("carousel__item--selected");
-
-            // Update button selection if needed
-            buttons.removeClass("carousel__button--selected");
-            buttons.eq(prev.index()).addClass("carousel__button--selected");
-        });
     });
+
+    function updateNavButtons() {
+        let currentSlideIndex = $(".carousel__item--selected").index();
+        let buttons = $(".carousel__button");
+        buttons.removeClass("carousel__button--selected");
+        buttons.eq(currentSlideIndex).addClass("carousel__button--selected");
+    }
 });

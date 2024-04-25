@@ -16,7 +16,7 @@
 <body>
     {% include 'navbar.html' %}
     <div>
-        <h1>{{ pos.title }}</h1>
+        <h1><strong>{{ pos.title }}</strong></h1>
         <ul>
             {% for inner_list in pos.text %}
                 <li>
@@ -29,7 +29,7 @@
             {% endfor %}
         </ul>
         <img src="{{ pos.image }}" alt="Posture Image">
-        <a href="/anatomy/1" class="nextbutton">Next</a>
+        <a href="/anatomy" class="nextbutton">Next</a>
 
     </div>
 

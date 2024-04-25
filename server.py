@@ -134,15 +134,13 @@ def posture(item_id):
         return render_template('learn/posture/forward_head.html', id=item_id, pos=pos)
 
 
-@app.route("/anatomy/<int:item_id>")
-def anatomy(item_id):
+@app.route("/anatomy")
+def anatomy():
     #anatomy = anatomies[str(item_id)]
     #print(anatomies)
-    if item_id == len(anatomies):
-        next_url = '/stretches/1'
-    else:
-        next_url = str(item_id+1)
-    return render_template('learn/anatomy/anatomy_carousel.html', anatomies=anatomies, next_url=next_url)
+    prev_url = '/posture/1'
+    next_url = '/stretches/1'
+    return render_template('learn/anatomy/anatomy.html', anatomies=anatomies, next_url=next_url, prev_url=prev_url)
 
 
 @app.route("/stretches/<int:item_id>")

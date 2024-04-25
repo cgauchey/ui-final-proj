@@ -162,10 +162,11 @@ h1 {
 .carousel__item
 {
   height: 200px;
-  width: 500px;
+  width: 450px;
   background: #c9daf8ff;
   padding: 1em;
   margin-top: 40px;
+  margin-left: 30px;
   display: none;
   border-radius: 50px;
   color: black;
@@ -186,6 +187,7 @@ h1 {
   left: 0;
   text-align: center;
   margin-top: 30px;
+  margin-left: 22px;
 }
 
 .carousel__button
@@ -203,4 +205,59 @@ h1 {
 .carousel__button--selected
 {
   background: rgba(0, 0, 139, 1);
+}
+
+.arrow
+{
+  width: 120px;
+  margin-top: 100px;
+  margin-left: 83px;
+  border: none;
+  transition: transform 0.2 ease;
+
+  img
+  {
+    width:100px;
+  }
+}
+
+.arrow:hover
+{
+  transform: scale(1.1);
+}
+
+
+
+.anatomynext {
+  display: inline-block;
+  padding: 10px 90px;
+
+  margin-left: 100px;
+  margin-top: 300px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
+}
+
+.anatomyback {
+  display: inline-block;
+  padding: 10px 90px;
+
+  margin-right: 100px;
+  margin-top: 300px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
 }

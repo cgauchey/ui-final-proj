@@ -53,7 +53,7 @@ stretcheslist = {
         "action": "strengthen",
         "target": "weak",
         "title":"Standing Chin Tucks",
-        "media": "https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/07/Chin-tucks.gif?w=200",
+        "media": "https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/07/Chin-tucks.gif?w=400",
         "text": ["Strengthen deep neck flexors","Stand with the upper back against the wall, with the feet shoulder-width apart.", "Tuck the chin in and hold for a few seconds.", "Return to the starting position and repeat a number of times."]
     },
     "2":{
@@ -61,7 +61,7 @@ stretcheslist = {
         "action": "strengthen",
         "target": "weak",
         "title":"Floor Cobras",
-        "media": "https://www.ocregister.com/wp-content/uploads/migration/kpi/kpinsg-07exercicelg.jpg?w=100",
+        "media": "https://www.ocregister.com/wp-content/uploads/migration/kpi/kpinsg-07exercicelg.jpg?w=400",
         "text": ["Strengthen lower trapz and serratus anterior ","Lie on the floor, arms at side of body (or with arms in front of body in a “Superman” position), palms facing toward ground.", "Pinch shoulder blades together and lift chest off the floor. Hold for 2 seconds. Slowly return body to the ground, keeping chin tucked."]
     },
     "3":{
@@ -146,11 +146,15 @@ def anatomy():
 @app.route("/stretches/<int:item_id>")
 def stretches(item_id):
     stretch = stretcheslist[str(item_id)]
+    if item_id == 1:
+        prev_url = '/anatomy'
+    else:
+        prev_url = str(item_id-1)
     if item_id == len(stretcheslist):
         next_url = '/stretches/back_stretches'
     else:
         next_url = str(item_id+1)
-    return render_template('learn/stretches/stretch.html', id=item_id, stretch=stretch, next_url=next_url)
+    return render_template('learn/stretches/stretch.html', id=item_id, stretch=stretch, next_url=next_url, prev_url=prev_url)
 
 @app.route('/stretches/back_stretches')
 def back_stretches():

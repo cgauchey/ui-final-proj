@@ -365,3 +365,60 @@ h3{
   border: none;
   border-radius: 15px;
 }
+
+.textbox
+{
+  height: 280px;
+  width: 450px;
+  background: #c9daf8ff;
+  padding: 1em;
+  margin-top: 40px;
+  margin-left: 30px;
+  margin-right: 500px;
+  border-radius: 50px;
+  color: black;
+  border: 1px solid black;
+}
+
+.stretchmedia img
+{
+  width: 400px;
+}
+
+.motivation
+{
+  margin: 40px;
+  text-align: center;
+}
+
+.stretchnext {
+  display: inline-block;
+  padding: 10px 90px;
+  margin-left: -40px;
+  margin-top: 450px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
+}
+
+.stretchback {
+  display: inline-block;
+  padding: 10px 90px;
+  margin-left: -200px;
+  margin-top: 450px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
+}

@@ -16,18 +16,42 @@
 <body>
     {% include 'navbar.html' %}
     <div>
-      <h1>We need to {{ stretch.action }} the {{ stretch.target }} muscles.</h1>
-      <h2>{{ stretch.title }}</h2>
-      <img src="{{ stretch.media }}" alt="Stretch Image">
-      <div>
-          <ul>
-              {% for step in stretch.text %}
-              <li>{{ step }}</li>
-              {% endfor %}
-          </ul>
+      <div class="motivation">
+        <h2>We need to <strong>{{ stretch.action }}</strong> the <strong>{{ stretch.target }}</strong> muscles.</h2>
       </div>
-      <a href="{{ next_url }}" class="nextbutton">Next</a>
 
+      <div class="container">
+        <div>
+          <div class="buttonContainer">
+            <a href="{{ prev_url }}" class="stretchback"><strong>Back</strong></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="textbox">
+              <h3>{{ stretch.title }}</h3>
+              <div>
+                <ul>
+                    {% for step in stretch.text %}
+                    <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stretchmedia">
+              <img src="{{ stretch.media }}" alt="Stretch Image">
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="buttonContainer">
+            <a href="{{ next_url }}" class="stretchnext"><strong>Next</strong></a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
 </body>

@@ -110,17 +110,29 @@
   <body>
     {% include 'navbar.html' %}
     <div
-      class="container flex-column"
-      style="font-family: 'Raleway', sans-serif"
-    >
-      <h3 class="text-center">{{ quiz.question }}</h3>
+      class="container flex-column mt-3"
+      style="font-family: 'Raleway', sans-serif; color: black;">
 
       <div class="row">
+        
         <div class="col"></div>
-        <div class="col">
+        <div class="col-md-7">
+
+          <div class="progress mt-3 mb-3">
+            <div class="progress-bar progress-bar-striped" role="progressbar" 
+                 style="width: {{ (quiz.id / 10 * 100) | round(0) }}%" 
+                 aria-valuenow="{{ quiz.id }}" aria-valuemin="0" aria-valuemax="10">
+            </div>
+        </div>
+
+          <div class="quiz-box">
+          <h5>{{quiz.id}}. {{quiz.question}}</h5>
+
           {% if quiz.image %}
-          <img src="{{ quiz.image }}" class="img-fluid quiz-image" />
-          {% endif %}
+          <div class="d-flex justify-content-center">
+            <img src="{{ quiz.image }}" class="img-fluid quiz-image" />
+        </div>          
+        {% endif %}
 
           <ul class="quiz-list" id="quiz-choices">
             {% for choice in quiz.choices %}
@@ -136,6 +148,7 @@
             </li>
             {% endfor %}
           </ul>
+          
 
           <ul class="quiz-list" id="quiz-choices-disabled">
             {% for choice in quiz.choices %}
@@ -145,6 +158,7 @@
             {% endfor %}
           </ul>
 
+        </div>
           <div class="row mt-4">
             {% if quiz.id-1 > 0 %}
             <div class="col">

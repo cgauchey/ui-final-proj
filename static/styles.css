@@ -249,6 +249,18 @@ h3{
   display: none;
 }
 
+.progress-bar{
+  background-color: rgb(152, 189, 253);
+}
+
+.quiz-box {
+  background-color: white;
+  padding: 20px;
+  border: 2px solid #666666; /* Adds a pink outline */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+  color: black; /* Ensures text is black and not the default blue of hyperlinks */
+}
+
 #next {
   display: none;
 }

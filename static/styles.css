@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif; /* Ensures the font is pleasant and readable */
+  font-family: "Open Sans", sans-serif; /* Ensures the font is pleasant and readable */
   font-style: normal;
   margin: 0;
   padding: 0;
@@ -26,7 +26,7 @@ body {
   background-color: white;
   padding: 20px;
   border: 2px solid #666666; /* Adds a pink outline */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visibility */
   text-align: center; /* Centers the text and image within the box */
   text-decoration: none; /* Removes underline from links */
   color: black; /* Ensures text is black and not the default blue of hyperlinks */
@@ -45,7 +45,6 @@ body {
   font-weight: bold;
 }
 
-
 /* Style for the header inside the div */
 h1 {
   font-size: 72px;
@@ -54,12 +53,12 @@ h1 {
   text-align: center;
   color: black;
   padding-bottom: 25px;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
-h3{
+h3 {
   color: black;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .homeDescription {
@@ -72,8 +71,8 @@ h3{
   background-color: #c9daf8ff; /* A nice shade of blue */
 }
 
-
-.navbar-brand, .nav-link {
+.navbar-brand,
+.nav-link {
   color: #666666;
   font-size: larger;
 }
@@ -83,7 +82,7 @@ h3{
 }
 
 .nav-link:hover {
-  color: #1c4587ff
+  color: #1c4587ff;
 }
 
 /* Mobile navbar toggle button */
@@ -112,10 +111,9 @@ h3{
   border-radius: 15px;
   color: white;
   font-weight: bold;
-  width:100%;
-  transition: background-color 0.3s ease; 
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
-
 
 .startbutton {
   display: inline-block;
@@ -134,7 +132,7 @@ h3{
 }
 
 .greenbutton {
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
   background-color: #4caf50;
 }
 
@@ -143,7 +141,7 @@ h3{
 }
 
 .bluebutton {
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
   background-color: #0056b3;
 }
 
@@ -171,24 +169,24 @@ h3{
   border-radius: 15px;
 }
 
-.nextbutton:hover {background-color: #1c4587ff}
+.nextbutton:hover {
+  background-color: #1c4587ff;
+}
 
 .active {
-
   font-weight: bolder;
 }
 
 /* Adjustments for small screens */
 @media (max-width: 992px) {
   .navbar-collapse {
-
-      background-color: #1c4587ff; /* Ensures the menu background matches */
+    background-color: #1c4587ff; /* Ensures the menu background matches */
   }
 
   .nav-link {
-      padding: 10px 20px; /* Larger tap/click targets for mobile */
-      text-align: center; /* Center-align text for a better visual on small screens */
-      border-bottom: 1px solid #1c4587ff; /* Separates items visually */
+    padding: 10px 20px; /* Larger tap/click targets for mobile */
+    text-align: center; /* Center-align text for a better visual on small screens */
+    border-bottom: 1px solid #1c4587ff; /* Separates items visually */
   }
 
   .nav-item:last-child .nav-link {
@@ -237,19 +235,15 @@ h3{
   background-color: #9fc7f3;
 }
 
-.quiz-list li label.correct-answer {
+.quiz-list li label.correct {
   background-color: rgba(0, 173, 0, 0.374);
 }
 
-.quiz-list li label.incorrect-answer {
+.quiz-list li label.incorrect {
   background-color: rgb(244, 186, 186);
 }
 
-#quiz-choices-disabled {
-  display: none;
-}
-
-.progress-bar{
+.progress-bar {
   background-color: rgb(152, 189, 253);
 }
 
@@ -257,30 +251,22 @@ h3{
   background-color: white;
   padding: 20px;
   border: 2px solid #666666; /* Adds a pink outline */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visibility */
   color: black; /* Ensures text is black and not the default blue of hyperlinks */
 }
 
-#next {
-  display: none;
-}
-
-.forward-head
-{
+.forward-head {
   width: 50px;
 }
 
 /* carousel styling */
 
-
-.carousel
-{
+.carousel {
   position: relative;
   text-align: center;
 }
 
-.carousel__item
-{
+.carousel__item {
   height: 200px;
   width: 450px;
   background: #c9daf8ff;
@@ -293,13 +279,11 @@ h3{
   border: 1px solid black;
 }
 
-.carousel__item--selected
-{
+.carousel__item--selected {
   display: inline-block;
 }
 
-.carousel__nav
-{
+.carousel__nav {
   width: 100%;
   padding: 20px 0;
   position: absolute;
@@ -310,8 +294,7 @@ h3{
   margin-left: 22px;
 }
 
-.carousel__button
-{
+.carousel__button {
   width: 30px;
   height: 30px;
   display: inline-block;
@@ -322,31 +305,25 @@ h3{
   border: 1px solid black;
 }
 
-.carousel__button--selected
-{
+.carousel__button--selected {
   background: rgba(0, 0, 139, 1);
 }
 
-.arrow
-{
+.arrow {
   width: 120px;
   margin-top: 100px;
   margin-left: 83px;
   border: none;
   transition: transform 0.2 ease;
 
-  img
-  {
-    width:100px;
+  img {
+    width: 100px;
   }
 }
 
-.arrow:hover
-{
+.arrow:hover {
   transform: scale(1.1);
 }
-
-
 
 .anatomynext {
   display: inline-block;
@@ -382,8 +359,7 @@ h3{
   border-radius: 15px;
 }
 
-.textbox
-{
+.textbox {
   height: 280px;
   width: 450px;
   background: #c9daf8ff;
@@ -396,13 +372,11 @@ h3{
   border: 1px solid black;
 }
 
-.stretchmedia img
-{
+.stretchmedia img {
   width: 400px;
 }
 
-.motivation
-{
+.motivation {
   margin: 40px;
   text-align: center;
 }
@@ -439,8 +413,7 @@ h3{
   border-radius: 15px;
 }
 
-.stretchbox
-{
+.stretchbox {
   text-align: center;
   height: 280px;
   width: 250px;
@@ -471,8 +444,6 @@ h3{
   border-radius: 15px;
 }
 
-
-
 /* results-styles */
 #chartContainer {
   width: 18%;
@@ -501,12 +472,11 @@ h3{
   font-size: 20px;
   border: solid 1px black;
   cursor: pointer; /* Makes it clear that the element is clickable */
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
-
-.no_underline{
-  text-decoration:none;
+.no_underline {
+  text-decoration: none;
 }
 
 .correct {
@@ -514,7 +484,12 @@ h3{
 }
 
 .correct:hover {
-  background-color: rgba(0, 173, 0, 0.844); /* Dark green on hover for correct */
+  background-color: rgba(
+    0,
+    173,
+    0,
+    0.844
+  ); /* Dark green on hover for correct */
 }
 
 .incorrect {
@@ -523,4 +498,131 @@ h3{
 
 .incorrect:hover {
   background-color: rgb(246, 109, 109); /* Dark red on hover for incorrect */
+}
+
+/* drag and drop */
+
+.drag-instruction-block i:before {
+  color: #737373;
+  background: #e0e0e0;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: block;
+  text-align: center;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.drag-instruction-block p {
+  font-weight: 600;
+  color: #737373;
+  font-size: 13px;
+}
+
+/* drop target state */
+[data-draggable="target"][aria-dropeffect="move"] {
+  border-color: #68b;
+  background: #fff;
+}
+
+/* draggable items */
+[data-draggable="item"] {
+  display: block;
+  list-style-type: none;
+}
+
+.draggable-module {
+  border-left: 5px solid #4caf50 !important;
+  padding: 30px 10px 0;
+  font-size: 12px;
+  color: #000000;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: -2px 3px 7px 0 rgba(153, 153, 153, 0.26);
+  position: relative;
+  min-height: 128px;
+  cursor: pointer;
+  font-weight: 700;
+  min-width: 100%;
+}
+
+.droppable-section-header {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.droppable-section-lightblue {
+  background-color: #62b5e5;
+}
+
+.droppable-section-midblue {
+  background-color: #9fc7f3;
+}
+
+.droppable-section-darkblue {
+  background-color: #0076a8;
+}
+
+.droppable-section .draggable-module {
+  padding: 10px 8px 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.droppable-section .draggable-module:before {
+  top: -2px;
+  left: 1px;
+}
+
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;
+  /* fallback */
+  max-height: 70px;
+  /* fallback */
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.drop-active {
+  border-color: #aaa;
+}
+
+.drop-target {
+  /*background-color: #29e;*/
+  border-color: #fff;
+  border-style: solid;
+}
+
+.drag-drop {
+  touch-action: none;
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+  color: #000;
+  background-color: #4caf4f6d;
+}
+
+#user-answer svg {
+  margin-left: 0.5rem;
+}
+
+#correct-answer svg {
+  margin-left: 0.5rem;
+}
+
+.green-highlight-text {
+  background-color: rgba(0, 173, 0, 0.374);
+}
+
+.red-highlight-text {
+  background-color: rgb(244, 186, 186);
 }

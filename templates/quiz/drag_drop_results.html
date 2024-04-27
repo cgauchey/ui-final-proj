@@ -24,31 +24,20 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename = 'drag_drop.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
-
-    
     <script>
-        
-      $(document).ready(function () {
-        
+        $(document).ready(function () {
+            let is_correct = {{ is_correct | tojson}};
 
-        $("#submit").click(function () {
-            var answer = {};
+            $("#correct-answer").addClass("green-highlight-text").append(correctSVG);
 
-            $('.yes-drop').each(function() {
-                var dragText = $(this).text().trim();
-                var dropZoneId = $(this).attr('data-dropped-into');
-                if (dropZoneId) {
-                    var dropText = $('#' + dropZoneId).closest('.droppable-section').find('.droppable-section-header').text().trim();
-                    answer[dropText] = dragText;
-                }
-            });
-          save_answer(answer);
-        });
-
-        
+            if (is_correct) {
+                $("#user-answer").addClass("green-highlight-text").append(correctSVG);
+            } else {
+                $("#user-answer").addClass("red-highlight-text").append(wrongSVG);
+            }
+                
       });
     </script>
-
 </head>
 
 <body>
@@ -71,59 +60,62 @@
                 </div>
 
             </div>
-            <div class="interactive-area mt-3">
-
-
-                <div id="drag-drops-abled">
-                <!-- drags -->
+            <div class="interactive-area">
+                <!-- answers -->
+                <h6 class="strong mt-3 d-inline-block p-1" id="user-answer">Your answer:</h6>
                 <div class="row">
-                    {% for drag in drags %}
-                    <div class="col text-center">
-                        <div class="left-custumborder draggable-module mb-3 yes-drop drag-drop" data-draggable="item">
-                            {{drag}}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-
-
-                <!-- drops -->
-                <div class="row">
-                    {% for drop in drops %}
+                    {% for drag, drop in user_answer %}
                     <div class="col text-center">
                         <div class="droppable-section">
                             <div class="droppable-section-header droppable-section-midblue drop-area py-3 px-2">
-
-                                {{drop}}
+                                {{ drop }}
                             </div>
-                            <div class="px-2 pt-3 border dropzone" id="Feedback_{{ loop.index }}" style="min-height:166px;">
+                            <div class="px-2 pt-3 border dropzone" style="min-height:166px;">
+                                <div class="left-custumborder draggable-module mb-3" style="background-color: #f8f9fa;">
+                                    {{ drag }}
+                                </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-                
+
+                <h6 class="strong mt-3 d-inline-block p-1" id="correct-answer">Correct answer:</h6>
+                <div class="row">
+                    {% for drag2, drop2 in correct_answer %}
+                    <div class="col text-center">
+                        <div class="droppable-section">
+                            <div class="droppable-section-header droppable-section-midblue drop-area py-3 px-2">
+                                {{ drop2 }}
+                            </div>
+                            <div class="px-2 pt-3 border dropzone" style="min-height:166px;">
+                                <div class="left-custumborder draggable-module mb-3" style="background-color: #f8f9fa;">
+                                    {{ drag2 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+
+            </div>
+
+
+            <div class="row mt-4">
+                {% if quiz.id-1 > 0 %}
+                <div class="col">
+                    <button id="back" class="custombutton bluebutton">Back</button>
+                </div>
+                {% endif %}
+                <div class="col">
+
+                    <button id="next" class="custombutton bluebutton">Next</button>
+                </div>
             </div>
         </div>
 
-            
-            
-            
-        </div>
-
-
-        <div class="row mt-4">
-            {% if quiz.id-1 > 0 %}
-            <div class="col">
-                <button id="back" class="custombutton bluebutton">Back</button>
-            </div>
-            {% endif %}
-            <div class="col">
-              <button id="submit" class="custombutton greenbutton">Submit</button>
-            </div>
-          </div>
-    </div>
-    
 
 </body>
 

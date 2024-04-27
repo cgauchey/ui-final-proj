@@ -89,7 +89,7 @@ questions = {
         "choices": ["Hamstring Stretch", "Thoracic Extension Stretch", "Hip Flexor Stretch", "Pectoral Stretch"],
         "image": "https://www.microspinemd.com/wp-content/uploads/2019/10/upper-back-pain.png",
         "answer": "Thoracic Extension Stretch",
-        "next": "end",
+        "next": "finalresults",
     },
 
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from questions_data import questions
 import random
 
@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # current_id = 1
 answers = {}
+user_results = [True for _ in range(len(questions))]
 
 
 postures = {
@@ -209,36 +210,29 @@ def back_stretches():
 
 @app.route("/quiz/<int:item_id>")
 def quiz(item_id):
-
-    global answers
-
-    # check whether user has already answered this question
+    if not item_id or item_id not in questions: 
+        return "<h1>quiz not found </h1>"
+    
+    # Assuming `answers` is accessible here, e.g., from session or database
     if item_id in answers:
-        is_answered = True
-        user_answer = answers[item_id]
-    else:
-        is_answered = False
-        user_answer = None
+        return redirect(url_for('results', item_id=item_id))
 
     quiz_data = questions.get(item_id)
-    if not quiz_data:
-        return "<h1>Quiz not found</h1>"
 
     # drag and drop
-    elif quiz_data["type"] == "dragdrop":
+    if quiz_data["type"] == "dragdrop":
 
-        # shuffle the options
+        # shuffle the drag options
         drags = list(quiz_data["answer"].values())
         random.shuffle(drags)
+
         drops = list(quiz_data["answer"].keys())
-        random.shuffle(drops)
 
         return render_template(
             "quiz/drag_drop.html",
             quiz=quiz_data,
             drags=drags,
             drops=drops,
-            is_answered=is_answered,
         )
 
     # mcq
@@ -246,20 +240,58 @@ def quiz(item_id):
         return render_template(
             "quiz/mc.html",
             quiz=quiz_data,
-            is_answered=is_answered,
-            user_answer=user_answer,
         )
 
 
+# display results and update user score at the same time 
 @app.route("/quiz/results/<int:item_id>")
 def results(item_id):
+    global user_results
+
+    if item_id not in answers:
+        return "<h1>Please complete the question first!</h1>"
+
+    quiz_data = questions.get(item_id)
+
+    user_answer = answers[item_id]
+    correct_answer = quiz_data["answer"]
+
+    #update user score
+    if user_answer != correct_answer:
+        user_results[item_id-1] = False 
+
+    print(user_answer)
+    print(correct_answer)
+
+    #mcq
+    if quiz_data["type"] == "mcq":
+        return render_template("quiz/mc_results.html", 
+                               id = item_id, 
+                               quiz = quiz_data,
+                               user_answer =  user_answer,
+                               correct_answer = correct_answer)
+    #dragdrop
+    else: 
+        drops = list(quiz_data["answer"].keys())
+        correct_drags = [quiz_data["answer"][drop] for drop in drops]
+        correct_answer = zip(correct_drags, drops)
+        user_answer = zip(list(answers[item_id].values()), drops)
+        
+        return render_template("quiz/drag_drop_results.html",
+                               id = item_id,
+                               quiz = quiz_data,
+                               user_answer = user_answer,
+                               correct_answer = correct_answer,
+                               is_correct = user_results[item_id-1])
+
+@app.route("/quiz/finalresults")
+def final_results():
     if len(answers) != len(questions):
         return "<h1>Please complete the quiz first!</h1>"
 
-    num_correct, num_wrong, percentage, results = get_quiz_results()
+    num_correct, num_wrong, percentage, results = get_quiz_final_results()
     return render_template(
         "quiz/results.html",
-        id=item_id,
         final_score=[num_correct, num_wrong],
         percentage=percentage,
         results=results,
@@ -267,43 +299,15 @@ def results(item_id):
 
 
 # FUNCTIONS
-def get_quiz_results():
+def get_quiz_final_results():
 
-    if len(answers) != len(questions):
-        return "<h1>Please complete the quiz first!</h1>"
-
-    results = [True for _ in range(len(questions))]
-
-    num_correct = len(questions)
-    for i in range(1, len(questions) + 1):
-        # mcq
-        if questions[i]["type"] == "mcq":
-            if answers[i] != questions[i]["answer"]:
-                num_correct -= 1
-                results[i - 1] = False
-
-        # drag and drop
-        else:
-            # sort dictionaries and compare
-            user_ans = sorted(answers[i].items())
-            correct_ans = sorted(questions[i]["answer"].items())
-
-            if user_ans != correct_ans:
-                num_correct -= 1
-                results[i - 1] = False
-
-    num_wrong = len(questions) - num_correct
+    num_correct = sum(user_results) 
+    num_wrong = len(questions) - num_correct 
     percentage = f"{num_correct}0%"
 
-    return num_correct, num_wrong, percentage, results
+    return num_correct, num_wrong, percentage, user_results
 
 
-@app.route("/clear_quiz_answers", methods=["POST"])
-def clear_quiz_answers():
-    global answers
-    answers = {}
-
-    return "400"
 
 
 # AJAX FUNCTIONS
@@ -318,6 +322,13 @@ def save_answer():
     answers[quiz_id] = user_answer
     return answer
 
+
+@app.route("/clear_quiz_answers", methods=["POST"])
+def clear_quiz_answers():
+    global answers
+    answers = {}
+
+    return "400"
 
 if __name__ == "__main__":
     app.run(debug=True)

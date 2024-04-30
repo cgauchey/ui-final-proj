@@ -12,8 +12,8 @@ user_results = [True for _ in range(len(questions))]
 postures = {
     "1": {
         "item_id": "1",
-        "title": "Forward Head Posture",
-        "image": "https://static1.squarespace.com/static/5b4e58369d5abb9d6adac232/5b50dfab575d1ff383c06981/5c73effee79c704c50cf605d/1619981137718/Figure_18.4.png?format=300w",
+        "title": "Forward Head Syndrome",
+        "image": "/static/forward-head.png",
         "text": [
             ["Headaches", "Fatigue", "Balance issues"],
             ["Pain and stiffness", "Impaired movement"],
@@ -22,8 +22,8 @@ postures = {
     },
     "2": {
         "item_id": "2",
-        "title": "Lower Crossed",
-        "image": "https://www.yoganatomy.com/wp-content/uploads/2020/10/lcs-diagram.jpg",
+        "title": "Lower Crossed Syndrome",
+        "image": "/static/lower-cross.png",
         "text": [["Protruding stomach"], ["Lower back pain"], ["Pain and stiffness"]],
     },
 }
@@ -210,9 +210,9 @@ def back_stretches():
 
 @app.route("/quiz/<int:item_id>")
 def quiz(item_id):
-    if not item_id or item_id not in questions: 
+    if not item_id or item_id not in questions:
         return "<h1>quiz not found </h1>"
-    
+
     # Assuming `answers` is accessible here, e.g., from session or database
     if item_id in answers:
         return redirect(url_for('results', item_id=item_id))
@@ -243,7 +243,7 @@ def quiz(item_id):
         )
 
 
-# display results and update user score at the same time 
+# display results and update user score at the same time
 @app.route("/quiz/results/<int:item_id>")
 def results(item_id):
     global user_results
@@ -256,33 +256,34 @@ def results(item_id):
     user_answer = answers[item_id]
     correct_answer = quiz_data["answer"]
 
-    #update user score
+    # update user score
     if user_answer != correct_answer:
-        user_results[item_id-1] = False 
+        user_results[item_id-1] = False
 
     print(user_answer)
     print(correct_answer)
 
-    #mcq
+    # mcq
     if quiz_data["type"] == "mcq":
-        return render_template("quiz/mc_results.html", 
-                               id = item_id, 
-                               quiz = quiz_data,
-                               user_answer =  user_answer,
-                               correct_answer = correct_answer)
-    #dragdrop
-    else: 
+        return render_template("quiz/mc_results.html",
+                               id=item_id,
+                               quiz=quiz_data,
+                               user_answer=user_answer,
+                               correct_answer=correct_answer)
+    # dragdrop
+    else:
         drops = list(quiz_data["answer"].keys())
         correct_drags = [quiz_data["answer"][drop] for drop in drops]
         correct_answer = zip(correct_drags, drops)
         user_answer = zip(list(answers[item_id].values()), drops)
-        
+
         return render_template("quiz/drag_drop_results.html",
-                               id = item_id,
-                               quiz = quiz_data,
-                               user_answer = user_answer,
-                               correct_answer = correct_answer,
-                               is_correct = user_results[item_id-1])
+                               id=item_id,
+                               quiz=quiz_data,
+                               user_answer=user_answer,
+                               correct_answer=correct_answer,
+                               is_correct=user_results[item_id-1])
+
 
 @app.route("/quiz/finalresults")
 def final_results():
@@ -301,13 +302,11 @@ def final_results():
 # FUNCTIONS
 def get_quiz_final_results():
 
-    num_correct = sum(user_results) 
-    num_wrong = len(questions) - num_correct 
+    num_correct = sum(user_results)
+    num_wrong = len(questions) - num_correct
     percentage = f"{num_correct}0%"
 
     return num_correct, num_wrong, percentage, user_results
-
-
 
 
 # AJAX FUNCTIONS
@@ -329,6 +328,7 @@ def clear_quiz_answers():
     answers = {}
 
     return "400"
+
 
 if __name__ == "__main__":
     app.run(debug=True)

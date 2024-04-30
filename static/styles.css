@@ -55,7 +55,15 @@ h1 {
   padding-bottom: 25px;
   font-family: "Raleway", sans-serif;
 }
-
+h2 {
+  font-size: 40px;
+  padding-top: 25px;
+  font-weight: bold;
+  text-align: center;
+  /* color: black; */
+  /* padding-bottom: 25px; */
+  font-family: "Raleway", sans-serif;
+}
 h3 {
   color: black;
   font-family: "Raleway", sans-serif;
@@ -151,7 +159,6 @@ h3 {
 }
 
 .active {
-  color: #4caf50; /* or any color that indicates selection */
   font-weight: bold;
 }
 
@@ -306,7 +313,7 @@ h3 {
 }
 
 .carousel__button--selected {
-  background: rgba(0, 0, 139, 1);
+  background: #1c4587ff;
 }
 
 .arrow {
@@ -354,7 +361,7 @@ h3 {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #1c4587ff;
+  background-color: #666666;
   border: none;
   border-radius: 15px;
 }
@@ -408,7 +415,7 @@ h3 {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #1c4587ff;
+  background-color: #666666;
   border: none;
   border-radius: 15px;
 }
@@ -489,7 +496,7 @@ h3 {
     173,
     0,
     0.844
-  ); /* Dark green on hover for correct */
+  );
 }
 
 .incorrect {
@@ -625,4 +632,116 @@ h3 {
 
 .red-highlight-text {
   background-color: rgb(244, 186, 186);
+}
+
+.problemcontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px
+}
+
+.problem-image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  /* margin: 50px; */
+}
+.problem-buttonContainer-forward {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  width: 100%; /* Ensures the container spans the full width */
+  padding-right: 100px; /* Optional: adds some padding on the right */
+}
+
+.problem-buttonContainer {
+  display: flex;
+  justify-content: space-between; /* Aligns the button to the right */
+  width: 100%; /* Ensures the container spans the full width */
+  padding-right: 100px; /* Optional: adds some padding on the right */
+  padding-left: 100px;
+}
+
+.problem-button {
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1c4587ff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 90px;
+}
+
+.problem-button-back {
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: #666666;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 90px;
+}
+
+
+.problem-responsive-image {
+  max-width: 500px;
+  max-height: 500px;
+
+}
+
+.problem-marker {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #1c4587ff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #c9daf8ff; /* Example: 2px solid black border */
+}
+
+.info-line {
+  display: flex;
+  align-items: center; /* Vertical alignment */
+  justify-content: center; /* Horizontal alignment */
+  gap: 10px; /* Adds space between the items */
+  margin: 20px
+}
+
+.problem-marker-1 {
+  /* position: absolute; */
+  width: 25px;
+  height: 25px;
+  background-color: #1c4587ff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #c9daf8ff;
+}
+
+
+.problem-marker:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  white-space: nowrap;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid #c9daf8ff; /* Example: 2px solid black border */
+}
+
+.info-linetext{
+  margin-top: 10px;
 }

@@ -13,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body>
+<!-- <body>
     {% include 'navbar.html' %}
     <div>
-        <h1><strong>{{ pos.title }}</strong></h1>
+        <h2><strong>{{ pos.title }}</strong></h2>
         <ul>
             {% for inner_list in pos.text %}
                 <li>
@@ -33,5 +33,29 @@
 
     </div>
 
+</body> -->
+<body>
+    {% include 'navbar.html' %}
+    <div>
+        <h2>{{ pos.title }}</h2>
+        <div class="info-line">
+            <p class="info-linetext">Hover over</p>
+            <div class="problem-marker-1"></div>
+            <p class="info-linetext">for more information.</p>
+        </div>
+        <div class="problemcontent">
+            <div class="problem-image-container">
+                <img src="{{ pos.image }}" alt="Posture Image" class="problem-responsive-image">
+                <div class="problem-marker" style="top: 20%; right: 35%;" data-tooltip="Portruding stomach"></div>
+                <div class="problem-marker" style="top: 30%; left: 40%;" data-tooltip="Lower back pain"></div>
+                <div class="problem-marker" style="top: 60%; left: 40%;" data-tooltip="Pain & Stiffness"></div>
+            </div>
+        </div>
+        <div class="problem-buttonContainer">
+            <a href="/posture/1" class="problem-button-back"><strong>Back</strong></a>
+            <a href="/anatomy" class="problem-button"><strong>Next</strong></a>
+        </div>
+    </div>
 </body>
+
 </html>

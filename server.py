@@ -171,7 +171,7 @@ def posture(item_id):
 def anatomy():
     # anatomy = anatomies[str(item_id)]
     # print(anatomies)
-    prev_url = "/posture/1"
+    prev_url = "/posture/2"
     next_url = "/stretches/1"
     return render_template(
         "learn/anatomy/anatomy.html",

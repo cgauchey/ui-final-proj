@@ -12,7 +12,7 @@ user_results = [True for _ in range(len(questions))]
 postures = {
     "1": {
         "item_id": "1",
-        "title": "Forward Head Syndrome",
+        "title": "Forward Head Posture",
         "image": "/static/forward-head.png",
         "text": [
             ["Headaches", "Fatigue", "Balance issues"],

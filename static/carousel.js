@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    let clickCount = 0;
+    let bigNext = $("#nextnext");
+    bigNext.prop('disabled', true);
     $(".prev-slide").click(function() {
         let currentSlide = $(".carousel__item--selected");
         let prevSlide = currentSlide.prev();
@@ -17,6 +20,11 @@ $(document).ready(function() {
         let currentSlide = $(".carousel__item--selected");
         let index = $(".carousel__item--selected").index();
         let nextSlide = currentSlide.next();
+        clickCount = clickCount + 1;
+        if (clickCount >= 3)
+        {
+            bigNext.removeClass('disabled');
+        }
         // if the current slide is the last out of four slides
         if (index === 3) {
             nextSlide = $(".carousel__item").first();
@@ -58,6 +66,7 @@ $(document).ready(function() {
         items.first().addClass("carousel__item--selected");
         buttons.first().addClass("carousel__button--selected");
     });
+    
 
     function updateNavButtons() {
         let currentSlideIndex = $(".carousel__item--selected").index();

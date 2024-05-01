@@ -745,3 +745,8 @@ h3 {
 .info-linetext{
   margin-top: 10px;
 }
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

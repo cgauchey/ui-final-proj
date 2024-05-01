@@ -9,7 +9,8 @@ questions = {
             "Lower Crossed Syndrome",
         ],
         "image": "https://b907749.smushcdn.com/907749/wp-content/uploads/2022/05/body-posture-1024x539-1.jpg?lossy=2&strip=1&webp=1",
-        "answer": "Forward Head Posture",  # do it this way so it's possible to scramble up the mcq order
+        # do it this way so it's possible to scramble up the mcq order
+        "answer": "Forward Head Posture",
         "next": 2,
     },
     2: {
@@ -56,7 +57,7 @@ questions = {
     6: {
         "id": 6,
         "type": "mcq",
-        "question": "Which stretch is demonstrated in the image on the right?",
+        "question": "Which stretch is demonstrated in the image?",
         "choices": ["Cat Cow", "Hip Flexor Lunge", "Floor Cobra", "Wall Angel"],
         "image": "https://pic1.zhimg.com/80/v2-e439c01a3cc3aeb7833ebc523a26af1c_720w.webp",
         "answer": "Floor Cobra",
@@ -76,7 +77,7 @@ questions = {
     8: {
         "id": 8,
         "type": "mcq",
-        "question": "Which stretch is demonstrated in the image on the right?",
+        "question": "Which stretch is demonstrated in the image?",
         "choices": ["Cat Cow", "Angel Wings", "Chest Stretch", "Wall Angel"],
         "image": "https://media.post.rvohealth.io/wp-content/uploads/sites/2/2021/04/GRT-1.7.Wall-Angels.gif",
         "answer": "Wall Angel",

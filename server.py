@@ -12,7 +12,7 @@ user_results = [True for _ in range(len(questions))]
 postures = {
     "1": {
         "item_id": "1",
-        "title": "Forward Head Syndrome",
+        "title": "Forward Head Posture",
         "image": "/static/forward-head.png",
         "text": [
             ["Headaches", "Fatigue", "Balance issues"],
@@ -110,7 +110,7 @@ stretcheslist = {
         "title": "Chest Stretch",
         "media": "https://images.squarespace-cdn.com/content/v1/5a620a85d55b41e7233c5243/ae25b65f-ef76-40f5-8091-76cb07bdad9b/PleasantTerrificBettong-size_restricted.gif",
         "text": [
-            "Stretch pecs",
+            "Stretch pecs and address forward head posture",
             "Stand upright with the feet shoulder-width apart.",
             "Bring the shoulders back and down.",
             "Interlace the fingers behind the back with the palms up.",

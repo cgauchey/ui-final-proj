@@ -717,6 +717,15 @@ h3 {
   margin: 20px
 }
 
+.posture-text {
+  display: flex;
+  align-items: center; /* Vertical alignment */
+  justify-content: center; /* Horizontal alignment */
+  margin: 20px;
+  font-size: larger;
+  /* font-weight: bold; */
+}
+
 .problem-marker-1 {
   /* position: absolute; */
   width: 25px;

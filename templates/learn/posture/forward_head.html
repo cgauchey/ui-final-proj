@@ -12,54 +12,35 @@
     rel="stylesheet" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
+    <script type="text/javascript" src="{{ url_for('static', filename = 'posture.js') }}"></script>
+
+
 </head>
-<!-- <body>
-    {% include 'navbar.html' %}
-    <div>
-        <h2>{{ pos.title }}</h2>
-        <ul>
-            {% for inner_list in pos.text %}
-                <li>
-                    <ul>
-                        {% for item in inner_list %}
-                            <li>{{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <img src="{{ pos.image }}" alt="Posture Image">
-        <div class="buttonContainer">
-            <a href="/posture/2" class="stretchnext"><strong>Next</strong></a>
-        </div>
 
-    </div>
-
-</body> -->
 <body>
     {% include 'navbar.html' %}
     <div>
         <h2>{{ pos.title }}</h2>
-        <div class="posture-text">A common condition where your head is positioned with your ears in front of your body's vertical midline.</div>
+        <div class="posture-text">{{ pos.description }}</div>
         <div class="info-line">
-            <p class="info-linetext">Hover over</p>
+            <p class="info-linetext">Click on</p>
             <div class="problem-marker-1"></div>
             <p class="info-linetext">to learn about the symptons</p>
         </div>
         <div class="problemcontent">
             <div class="problem-image-container">
                 <img src="{{ pos.image }}" alt="Posture Image" class="problem-responsive-image">
-                <div class="problem-marker" style="top: 5%; right: 25%;" data-tooltip="Headaches, Fatigue, Balance Issues"></div>
-                <div class="problem-marker" style="top: 35%; left: 25%;" data-tooltip="Pain & Stiffness, Impaired Movement"></div>
-                <div class="problem-marker" style="top: 60%; right: 40%;" data-tooltip="Pain & Stiffness, Impaired Movement, Respiratory Issues"></div>
+                <div class="problem-marker" style="top: 5%; right: 25%;" data-tooltip="Headaches, Fatigue, Balance Issues" onclick="toggleTooltip(event)"></div>
+                <div class="problem-marker" style="top: 35%; left: 25%;" data-tooltip="Pain & Stiffness, Impaired Movement" onclick="toggleTooltip(event)"></div>
+                <div class="problem-marker" style="top: 60%; right: 40%;" data-tooltip="Pain & Stiffness, Impaired Movement, Respiratory Issues" onclick="toggleTooltip(event)"></div>
             </div>
         </div>
-
 
         <div class="problem-buttonContainer-forward">
             <a href="/posture/2" class="problem-button"><strong>Next</strong></a>
         </div>
     </div>
+
 </body>
 
 

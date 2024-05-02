@@ -12,45 +12,27 @@
     rel="stylesheet" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
+    <script type="text/javascript" src="{{ url_for('static', filename = 'posture.js') }}"></script>
+
 </head>
-<!-- <body>
-    {% include 'navbar.html' %}
-    <div>
-        <h2><strong>{{ pos.title }}</strong></h2>
-        <ul>
-            {% for inner_list in pos.text %}
-                <li>
-                    <ul>
-                        {% for item in inner_list %}
-                            <li>{{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <img src="{{ pos.image }}" alt="Posture Image">
-        <a href="/anatomy" class="nextbutton">Next</a>
 
-    </div>
-
-</body> -->
 <body>
 
     {% include 'navbar.html' %}
     <div>
         <h2>{{ pos.title }}</h2>
-        <div class="posture-text">A common musculoskeletal condition characterized by specific patterns of muscle weakness and tightness that may affect the lower segment of the body.</div>
+        <div class="posture-text">{{ pos.description }}</div>
         <div class="info-line">
-            <p class="info-linetext">Hover over</p>
+            <p class="info-linetext">Click on</p>
             <div class="problem-marker-1"></div>
             <p class="info-linetext">to learn about the symptons</p>
         </div>
         <div class="problemcontent">
             <div class="problem-image-container">
                 <img src="{{ pos.image }}" alt="Posture Image" class="problem-responsive-image">
-                <div class="problem-marker" style="top: 20%; right: 35%;" data-tooltip="Portruding stomach"></div>
-                <div class="problem-marker" style="top: 30%; left: 40%;" data-tooltip="Lower back pain"></div>
-                <div class="problem-marker" style="top: 60%; left: 40%;" data-tooltip="Pain & Stiffness"></div>
+                <div class="problem-marker" style="top: 20%; right: 35%;" data-tooltip="Portruding stomach" onclick="toggleTooltip(event)"></div>
+                <div class="problem-marker" style="top: 30%; left: 40%;" data-tooltip="Lower back pain" onclick="toggleTooltip(event)"></div>
+                <div class="problem-marker" style="top: 60%; left: 40%;" data-tooltip="Pain & Stiffness" onclick="toggleTooltip(event)"></div>
             </div>
         </div>
         <div class="problem-buttonContainer">

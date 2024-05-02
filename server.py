@@ -14,6 +14,7 @@ postures = {
         "item_id": "1",
         "title": "Forward Head Posture",
         "image": "/static/forward-head.png",
+        "description": "A common condition where your head is positioned with your ears in front of your body's vertical midline.",
         "text": [
             ["Headaches", "Fatigue", "Balance issues"],
             ["Pain and stiffness", "Impaired movement"],
@@ -24,6 +25,7 @@ postures = {
         "item_id": "2",
         "title": "Lower Crossed Syndrome",
         "image": "/static/lower-cross.png",
+        "description": "A common musculoskeletal condition characterized by specific patterns of muscle weakness and tightness that may affect the lower segment of the body.",
         "text": [["Protruding stomach"], ["Lower back pain"], ["Pain and stiffness"]],
     },
 }

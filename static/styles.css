@@ -737,7 +737,7 @@ h3 {
 }
 
 
-.problem-marker:hover::after {
+/* .problem-marker:hover::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 100%;
@@ -748,9 +748,25 @@ h3 {
   border-radius: 5px;
   top: 50%;
   transform: translateY(-50%);
-  border: 2px solid #c9daf8ff; /* Example: 2px solid black border */
+  border: 2px solid #c9daf8ff;
+} */
+.problem-marker::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  white-space: nowrap;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid #c9daf8; /* Example: 2px solid black border */
+  display: none; /* Initially hidden */
 }
-
+.problem-marker.show-tooltip::after {
+  display: block; /* Show tooltip when class is added */
+}
 .info-linetext{
   margin-top: 10px;
 }

@@ -160,6 +160,7 @@ h3 {
 
 .active {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .nextbutton {
@@ -182,6 +183,7 @@ h3 {
 
 .active {
   font-weight: bolder;
+  text-decoration: underline;
 }
 
 /* Adjustments for small screens */

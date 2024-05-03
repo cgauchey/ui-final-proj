@@ -90,8 +90,16 @@ questions = {
         "choices": ["Hamstring Stretch", "Thoracic Extension Stretch", "Hip Flexor Stretch", "Pectoral Stretch"],
         "image": "https://www.microspinemd.com/wp-content/uploads/2019/10/upper-back-pain.png",
         "answer": "Thoracic Extension Stretch",
-        "next": "finalresults",
+        "next": 10,
     },
-
+    10:{
+        "id": 10,
+        "type": "mcq",
+        "question": "If you are experiencing lower back pain, which posture problem are you more likely to have?",
+        "choices": ["Upper Crossed Syndrome", "Lower Crossed Syndrome"],
+        "image": "",
+        "answer": "Lower Crossed Syndrome",
+        "next": "finalresults"
+    }
 
 }

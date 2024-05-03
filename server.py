@@ -262,9 +262,6 @@ def results(item_id):
     if user_answer != correct_answer:
         user_results[item_id-1] = False
 
-    print(user_answer)
-    print(correct_answer)
-
     # mcq
     if quiz_data["type"] == "mcq":
         return render_template("quiz/mc_results.html",
